@@ -81,9 +81,6 @@ const Material = [
 
 /** @Bootstrap module */
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { CryptoService } from '../services/crypto.service';
-import { SessionService } from '../services/session.service';
-import { MessageService } from '../services/message.service';
 /** end @Bootstrap module */
 
 
@@ -98,10 +95,6 @@ import { MessageService } from '../services/message.service';
   exports:[
     Material,
   ],
-  providers:[
-    CryptoService,
-    SessionService,
-    MessageService
-  ]
+  providers:[]
 })
 export class EterUiModule { }
