@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "eter-ui"
+    }
+  },
+  "defaultProject": "eter-ui",
+  "cli": {
+    "analytics": "9ea9789d-2c5b-422c-a047-aaf834d614bf"
+  }
 }
