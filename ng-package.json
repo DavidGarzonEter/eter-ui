@@ -3,7 +3,10 @@
   "lib": {
     "entryFile": "public_api.ts",
     "umdModuleIds":{
-      "@ng-bootstrap/ng-bootstrap":"@ng-bootstrap/ng-bootstrap"
+      "@ng-bootstrap/ng-bootstrap":"@ng-bootstrap/ng-bootstrap",
+      "crypto-js":"crypto-js",
+      "sweetalert2":"sweetalert2"
+
     }
   },
   "whitelistedNonPeerDependencies":[
@@ -14,6 +17,8 @@
     "sweetalert2",
     "bootstrap",
     "tslib",
-    "zone.js"
+    "zone.js",
+    "crypto-js",
+    "sweetalert2"
   ]
 }
