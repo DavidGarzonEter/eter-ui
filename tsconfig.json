@@ -1,6 +1,6 @@
 {
   "compileOnSave": false,
-  "compilerOptions": {
+  "compilerOptions": {    
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
@@ -14,10 +14,16 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "@angular/core": ["node_modules/@angular/core"],
+      "rxjs/*":["node_modules/rxjs/*"]
+    }
   },
   "angularCompilerOptions": {
+    "enableIvy": false,
     "fullTemplateTypeCheck": true,
-    "strictInjectionParameters": true
+    "strictInjectionParameters": true,
+    "sctrictMetadataEmit":true
   }
 }
