@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-
 /** @material modules */
 
 import {MatButtonModule} from '@angular/material/button';
@@ -82,6 +81,9 @@ const Material = [
 
 /** @Bootstrap module */
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CryptoService } from '../services/crypto.service';
+import { SessionService } from '../services/session.service';
+import { MessageService } from '../services/message.service';
 /** end @Bootstrap module */
 
 
@@ -95,6 +97,11 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
   ],
   exports:[
     Material,
+  ],
+  providers:[
+    CryptoService,
+    SessionService,
+    MessageService
   ]
 })
 export class EterUiModule { }
