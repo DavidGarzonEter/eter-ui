@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 declare var require: any
 var CryptoJS = require("crypto-js");
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+  })
 export class CryptoService {
     
     key:string;
@@ -17,10 +19,14 @@ export class CryptoService {
         return CryptoJS.AES.encrypt(strData, this.key);
     }
     decode(data:string){
+       try{
         var bytes = CryptoJS.AES.decrypt(data, this.key);
         var str = bytes.toString(CryptoJS.enc.Utf8);
         
         return JSON.parse(str);
+       }catch(e){
+        console.log('Error try to decode string')
+       }
     }
 
     encodeSHA256(data) {

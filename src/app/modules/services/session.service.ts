@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { CryptoService } from './crypto.service';
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+  })
 export class SessionService {
 
     key = "3dd3e96c634e00fd6699041522def9a3";

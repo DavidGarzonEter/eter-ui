@@ -81,6 +81,7 @@ const Material = [
 
 /** @Bootstrap module */
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 /** end @Bootstrap module */
 
 
@@ -90,7 +91,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     CommonModule,
     MatButtonModule,
     Material,
-    NgbModule
+    NgbModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports:[
     Material,
