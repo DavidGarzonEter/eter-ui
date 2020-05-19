@@ -81,9 +81,10 @@ const Material = [
 
 /** @Bootstrap module */
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 /** end @Bootstrap module */
 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 @NgModule({
   declarations: [],
@@ -93,7 +94,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     Material,
     NgbModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    
   ],
   exports:[
     Material,

@@ -42,15 +42,53 @@
                     <mat-form-field>
                         <input type="text" matInput placeholder="Ingrese un texto " [(ngModel)]='textToCrypt' autocomplete="off" (keyup)='updateCrypt()'> 
                     </mat-form-field>
-                    encrypt text : {{textCrypt}}
+                    <strong>encrypt text :</strong> {{textCrypt}}
                     
                     <br>
 
                     <mat-form-field>
                         <input type="text" matInput placeholder="Ingrese un texto encriptado " [(ngModel)]='textToDecrypt' autocomplete="off" (keyup)='updateDecrypt()' (change)='updateDecrypt()'> 
                     </mat-form-field>
-                    Decrypt text : {{textDecrypt}}
+                    <strong>Decrypt text : </strong>{{textDecrypt}}
 
+
+                </mat-expansion-panel> 
+
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Session Service 
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    
+                   <div style='display: flex; flex-direction: row; justify-content: space-around;'>
+                        <div class='sesion-service-flex'>
+                            <mat-form-field>
+                                <input type="text" [(ngModel)]="keySet" matInput placeholder="Key" autocomplete="off">
+                            </mat-form-field>
+                            <br>
+                            <mat-form-field>
+                                <input type="text" [(ngModel)]="valueSet" matInput placeholder="Value" autocomplete="off">
+                            </mat-form-field>
+                            <br>
+                            <button mat-raised-button color="accent" (click)="setSessionVar()">Set var</button>
+                        </div>
+                        <div style="flex: 0.5;">
+
+                        </div>
+
+                        <div class='sesion-service-flex'>
+                            <mat-form-field>
+                                <input type="text"[(ngModel)]="keyGet"  matInput placeholder="Key" autocomplete="off">
+                            </mat-form-field>
+                            <br>
+                            
+                            
+                            <button mat-raised-button color="accent" (click)="getSessionVar()" >Get var</button>
+                        </div>
+
+                        
+                   </div>
 
                 </mat-expansion-panel> 
 

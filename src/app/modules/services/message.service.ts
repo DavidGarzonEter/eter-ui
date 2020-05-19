@@ -17,6 +17,10 @@ export class MessageService {
       showCancelButton: showCancelButton,
       confirmButtonText: confirmButtonText,
       cancelButtonText: cancelButtonText,
+      customClass: {
+        confirmButton: 'confirm-button-class',
+        cancelButton: 'cancel-button-class',
+      }
     })
   }
 
@@ -29,6 +33,10 @@ export class MessageService {
       showCancelButton: showCancelButton,
       confirmButtonText: confirmButtonText,
       cancelButtonText: cancelButtonText,
+      customClass: {
+        confirmButton: 'confirm-button-class',
+        cancelButton: 'cancel-button-class',
+      }
     })
   }
 
@@ -40,6 +48,10 @@ export class MessageService {
       showCancelButton: showCancelButton,
       confirmButtonText: confirmButtonText,
       cancelButtonText: cancelButtonText,
+      customClass: {
+        confirmButton: 'confirm-button-class',
+        cancelButton: 'cancel-button-class',
+      }
     })
   }
 
@@ -51,6 +63,10 @@ export class MessageService {
       showCancelButton: showCancelButton,
       confirmButtonText: confirmButtonText,
       cancelButtonText: cancelButtonText,
+      customClass: {
+        confirmButton: 'confirm-button-class',
+        cancelButton: 'cancel-button-class',
+      }
     })
   }
 

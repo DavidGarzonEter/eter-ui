@@ -1,1 +1,13 @@
-@import '~@sweetalert2/themes/dark/dark.scss';
+.confirm-button-class {
+    background-color: black !important;
+    font-family: Roboto, "Helvetica Neue", sans-serif !important;
+}
+
+.cancel-button-class{
+    background-color: white !important;
+    color:black !important;
+    font-family: Roboto, "Helvetica Neue", sans-serif !important;
+    border-color: black !important;
+    border-style: solid !important;
+    border-width: 1px !important;
+}

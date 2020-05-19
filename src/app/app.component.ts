@@ -10,10 +10,16 @@ import { CryptoService } from './modules/services/crypto.service';
 })
 export class AppComponent implements OnInit {
   title = 'eter-ui';
+
   textToCrypt;
   textCrypt;
   textToDecrypt;
   textDecrypt;
+
+  keySet
+  keyGet
+  valueSet
+  valueGet
 
   constructor(
     private session: SessionService,
@@ -27,16 +33,16 @@ export class AppComponent implements OnInit {
   openMessage(param) {
     switch (param) {
       case 'Success':
-        this.message.Success('Correcto!', 'Mensaje personalizado de correcto.')
+        this.message.Success('Correcto!', 'Mensaje personalizado de correcto.',true)
         break;
       case 'Warning':
-        this.message.Warning('Advertencia!', 'Mensaje personalizado de adventerncia')
+        this.message.Warning('Advertencia!', 'Mensaje personalizado de adventerncia', true)
         break;
       case 'Error':
-        this.message.Error('Error!', 'Mensaje personalizado de Error')
+        this.message.Error('Error!', 'Mensaje personalizado de Error', true)
         break;
       case 'Info':
-        this.message.Info('Informacion!', 'Mensaje personalizado de informacion')
+        this.message.Info('Informacion!', 'Mensaje personalizado de informacion', true)
         break;
       case 'SuccessToast':
         this.message.SuccessToast('Mensaje personalizado de correcto.')
@@ -61,4 +67,33 @@ export class AppComponent implements OnInit {
     this.textDecrypt = this.crypt.decode(this.textToDecrypt)
   }
 
+  setSessionVar(){
+    if(!!this.keySet && !!this.valueSet){
+      try{
+        this.session.setData(this.keySet, this.valueSet)
+        this.message.SuccessToast('Variable establecida correctamente en sesion')
+        this.keySet=''
+        this.valueSet=''
+      }catch(e){
+        this.message.ErrorToast('Error estableciendo la variable en sesion')
+      }
+    }else{
+      this.message.Error('Error!','para establecer la variable en sesion debe llenar los campos key y value')
+    }
+    
+  }
+
+  getSessionVar(){
+    if(!!this.keyGet){
+      try{
+        this.message.Success('Variable Capturada', `valor: ${this.session.getData(this.keyGet)}`)
+        this.keyGet=''
+      }catch(e){
+        this.message.ErrorToast('Error capturando la variable en sesion')
+      }
+      
+    }else{
+      this.message.Error('Error!','para capturar una variable de sesion debe llenar el campo key')
+    }
+  }
 }
