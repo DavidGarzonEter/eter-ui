@@ -86,7 +86,8 @@ export class AppComponent implements OnInit {
   getSessionVar(){
     if(!!this.keyGet){
       try{
-        this.message.Success('Variable Capturada', `valor: ${this.session.getData(this.keyGet)}`)
+        // this.session.
+        // if()
         this.keyGet=''
       }catch(e){
         this.message.ErrorToast('Error capturando la variable en sesion')

@@ -85,6 +85,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [],
@@ -95,6 +96,7 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
     NgbModule,
     FormsModule,
     ReactiveFormsModule,
+	HttpClientModule,
     
   ],
   exports:[
