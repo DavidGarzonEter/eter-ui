@@ -1,0 +1,21 @@
+<table class="table_Eter">
+    <thead class="dark">
+      <tr>
+        <th scope="col" style='width: 80%;'>Nombre</th>
+        <th style='text-align: center;'>
+          <i class="fa fa-plus-circle " style="font-size: 150%;margin-right: 20px;"></i>
+          <i class="fa fa-edit " style="font-size: 150%; margin-right: 20px;"></i>
+          <i class="fa fa-trash fa-1x" style="font-size: 150%;"></i>
+        </th>
+      </tr>
+    </thead>
+    <tbody class='mat-elevation-z6'>
+      <tr *ngFor="let dato of datos" style="cursor: pointer;">
+        <th scope="row">{{dato}}</th>
+        <td style='text-align: center;'>
+          <mat-checkbox style="margin-right:0;"></mat-checkbox>
+        </td>
+      </tr>
+
+    </tbody> 
+  </table>

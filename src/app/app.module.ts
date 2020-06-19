@@ -8,12 +8,14 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { TestApiComponent } from './components/test-api/test-api.component';
 import { HttpClientModule } from '@angular/common/http';
+import { DataTableComponent } from './components/data-table/data-table.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    TestApiComponent
+    TestApiComponent,
+    DataTableComponent
   ],
   imports: [
     BrowserModule,

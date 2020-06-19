@@ -1,0 +1,29 @@
+.table_Eter {
+    width: 100%;
+    margin-bottom: 1rem;
+    color: #212529;
+    border-collapse: collapse;
+}
+
+.table_Eter .dark th {
+    color: #fff;
+    background-color: #343a40;
+    border-color: #454d55;
+}
+.table_Eter thead th {
+    vertical-align: bottom;
+    border-bottom: 2px solid #dee2e6;
+}
+
+.table_Eter th, .table_Eter td {
+    padding: 0.75rem;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
+}
+th {
+    text-align: inherit;
+}
+*, *::before, *::after {
+    box-sizing: border-box;
+} 
+
