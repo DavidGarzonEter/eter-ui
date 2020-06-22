@@ -1,21 +1,26 @@
-<table class="table_Eter">
-    <thead class="dark">
-      <tr>
-        <th scope="col" style='width: 80%;'>Nombre</th>
-        <th style='text-align: center;'>
-          <i class="fa fa-plus-circle " style="font-size: 150%;margin-right: 20px;"></i>
-          <i class="fa fa-edit " style="font-size: 150%; margin-right: 20px;"></i>
-          <i class="fa fa-trash fa-1x" style="font-size: 150%;"></i>
-        </th>
-      </tr>
-    </thead>
-    <tbody class='mat-elevation-z6'>
-      <tr *ngFor="let dato of datos" style="cursor: pointer;">
-        <th scope="row">{{dato}}</th>
-        <td style='text-align: center;'>
-          <mat-checkbox style="margin-right:0;"></mat-checkbox>
-        </td>
-      </tr>
-
-    </tbody> 
-  </table>
+<div style="width:100%;">
+  <div style='display: flex; flex-direction: row-reverse;'>
+    <div>
+      <i class="fa fa-plus-circle " style="font-size: 150%;margin-right: 15px;"></i>
+      <i class="fa fa-edit " style="font-size: 150%; margin-right: 15px;"></i>
+      <i class="fa fa-trash fa-1x" style="font-size: 150%; margin-right: 15px;"></i>
+    </div>
+ </div>
+ 
+ <table class="table_Eter table-hover">
+     <thead class="dark">
+       <tr>
+       <th *ngFor='let columna of columnas' scope="col" [ngStyle]='columna.style'>{{columna.label}}</th>
+         <!-- <th style='text-align: center;'>
+           
+         </th> -->
+       </tr>
+     </thead>
+     <tbody class='mat-elevation-z6'>
+       <tr style="cursor: pointer;" *ngFor='let fila of datos' >
+         <th  [ngStyle]='columna.style' scope="row" *ngFor='let columna of columnas'>{{ fila[columna.ID] }}</th>
+       </tr>
+ 
+     </tbody> 
+   </table>
+</div>

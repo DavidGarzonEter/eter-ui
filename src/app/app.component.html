@@ -109,7 +109,12 @@
                             Table 
                         </mat-panel-title>                                               
                     </mat-expansion-panel-header>
-                    <app-data-table></app-data-table>                   
+
+                    <data-table [columnas]='columnasCofig' [datos]='body'></data-table> 
+                    
+                    
+                    
+
                 </mat-expansion-panel>              
 
             </mat-accordion>

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { SessionService } from './modules/services/session.service';
 import { MessageService } from './modules/services/message.service';
 import { CryptoService } from './modules/services/crypto.service';
+import { HttpService } from './modules/services/http.service';
+import { TableColumns } from './interfaces/data-table/table-columns';
 
 @Component({
   selector: 'app-root',
@@ -21,13 +23,71 @@ export class AppComponent implements OnInit {
   valueSet
   valueGet
 
+
+  columnasCofig : TableColumns[] = [
+    {
+      ID:'id',
+      label:'id',
+      type:'number',
+      style:{
+        width:'30%',
+        textAlign:'center'
+      }
+    },
+    {
+      ID:'nombre',
+      label:'nombre',
+      type:'text',
+      style:{
+        width:'30%',
+        textAlign:'center' //text-align
+      }
+    },
+    {
+      ID:'id_compania',
+      label:'id compañia ',
+      type:'text',
+      style:{
+        width:'40%',
+        textAlign:'center' //text-align
+      }
+    }
+  ]
+  body = [
+    {
+      "id": 5,
+      "id_compania": 1,
+      "nombre": "Técnico"
+  },
+  {
+      "id": 6,
+      "id_compania": 1,
+      "nombre": "Ingeniero"
+  },
+  ]
+
   constructor(
     private session: SessionService,
     private message: MessageService,
-    private crypt : CryptoService
+    private crypt : CryptoService,
+    private http : HttpService
   ) { }
 
   ngOnInit() {
+
+    this.http.getData('http://localhost:3000/api/v1/cargos?id_compania=1').subscribe(
+      res=>{
+        if(res['code']===0){
+          this.body=res['body']
+
+          this.body.push(res['body'][0])
+
+        }
+      }
+    )
+
+  
+    
   }
 
   openMessage(param) {
