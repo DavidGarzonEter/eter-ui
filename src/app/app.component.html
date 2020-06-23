@@ -110,7 +110,12 @@
                         </mat-panel-title>                                               
                     </mat-expansion-panel-header>
 
-                    <data-table [columnas]='columnasCofig' [datos]='body'></data-table> 
+                    <data-table 
+                    [columns]='columnasCofig'
+                    [data]='body'
+                    [configuration]='configurationTable'
+                    (clickRow)='filaSeleccionada($event)'
+                    ></data-table> 
                     
                     
                     

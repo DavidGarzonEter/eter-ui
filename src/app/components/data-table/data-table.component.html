@@ -1,24 +1,32 @@
 <div style="width:100%;">
   <div style='display: flex; flex-direction: row-reverse;'>
-    <div>
-      <i class="fa fa-plus-circle " style="font-size: 150%;margin-right: 15px;"></i>
-      <i class="fa fa-edit " style="font-size: 150%; margin-right: 15px;"></i>
-      <i class="fa fa-trash fa-1x" style="font-size: 150%; margin-right: 15px;"></i>
+    
+    <div (click)='action("delete")'>
+      <i class="fa fa-trash btn-accion" style="font-size: 150%; margin-right: 15px;" *ngIf='configuration.delete'></i>
     </div>
- </div>
+  
+    <div (click)='action("edit")'>
+      <i class="fa fa-edit btn-accion" style="font-size: 150%; margin-right: 15px;" *ngIf='configuration.edit'></i>
+    </div>
+  
+    <div (click)='action("add")'>
+      <i class="fa fa-plus-circle btn-accion" style="font-size: 150%;margin-right: 15px;" *ngIf='configuration.add'></i>
+    </div>
+  
+  </div>
  
  <table class="table_Eter table-hover">
      <thead class="dark">
        <tr>
-       <th *ngFor='let columna of columnas' scope="col" [ngStyle]='columna.style'>{{columna.label}}</th>
+       <th *ngFor='let column of columns' scope="col" [ngStyle]='column.style'>{{column.label}}</th>
          <!-- <th style='text-align: center;'>
            
          </th> -->
        </tr>
      </thead>
      <tbody class='mat-elevation-z6'>
-       <tr style="cursor: pointer;" *ngFor='let fila of datos' >
-         <th  [ngStyle]='columna.style' scope="row" *ngFor='let columna of columnas'>{{ fila[columna.ID] }}</th>
+       <tr style="cursor: pointer;" *ngFor='let row of data' (click)='clickOnRoW(row)' >
+         <th  [ngStyle]='column.style' scope="row" *ngFor='let column of columns'>{{ row[column.ID] }}</th>
        </tr>
  
      </tbody> 

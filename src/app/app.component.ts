@@ -4,6 +4,7 @@ import { MessageService } from './modules/services/message.service';
 import { CryptoService } from './modules/services/crypto.service';
 import { HttpService } from './modules/services/http.service';
 import { TableColumns } from './interfaces/data-table/table-columns';
+import { TableConfiguration } from './interfaces/data-table/table-configuration';
 
 @Component({
   selector: 'app-root',
@@ -23,6 +24,12 @@ export class AppComponent implements OnInit {
   valueSet
   valueGet
 
+
+  configurationTable : TableConfiguration = {
+    edit:true,
+    add:true,
+    delete:true,
+  }
 
   columnasCofig : TableColumns[] = [
     {
@@ -81,7 +88,6 @@ export class AppComponent implements OnInit {
           this.body=res['body']
 
           this.body.push(res['body'][0])
-
         }
       }
     )
@@ -156,5 +162,10 @@ export class AppComponent implements OnInit {
     }else{
       this.message.Error('Error!','para capturar una variable de sesion debe llenar el campo key')
     }
+  }
+
+
+  filaSeleccionada($event){
+    console.log($event)
   }
 }
