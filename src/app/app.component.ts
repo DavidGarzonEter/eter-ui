@@ -28,7 +28,9 @@ export class AppComponent implements OnInit {
   configurationTable : TableConfiguration = {
     edit:true,
     add:true,
-    delete:true,
+    delete:false,
+    addPer:false,
+    editPer:false
   }
 
   columnasCofig : TableColumns[] = [
@@ -166,6 +168,10 @@ export class AppComponent implements OnInit {
 
 
   filaSeleccionada($event){
+    console.log($event)
+  }
+
+  agregar($event){
     console.log($event)
   }
 }

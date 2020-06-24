@@ -9,6 +9,8 @@ import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 })
 export class TableModalComponent implements OnInit {
 
+  modalForm= {}
+
   constructor(
     public dialogRef: MatDialogRef<TableModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data,
@@ -23,10 +25,27 @@ export class TableModalComponent implements OnInit {
 
   ngOnInit(): void {
 
+    
     let columns = this.data.columns
 
-    console.log(this.data)
+    this.data.columns.forEach(element => {        
+      let text = `{"${element.ID}":""}`
+      let json = JSON.parse(text)
+      Object.assign(this.modalForm,json)
+    });
+
     
+  }
+
+  onSubmit(){
+    this.dialogRef.close(this.modalForm)
+  }
+
+  onChange(id, $event){
+
+    this.modalForm[id] = $event
+
+
   }
 
 }

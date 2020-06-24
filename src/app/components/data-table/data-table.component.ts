@@ -13,12 +13,16 @@ export class DataTableComponent implements OnInit {
 
   @Input() columns:TableColumns
   @Input() data:any
-  @Output() clickRow = new EventEmitter<any>() 
   @Input() configuration:TableConfiguration = {
     add :false,
     edit:false,
-    delete:false
+    delete:false,
+    addPer:false,
+    editPer:false,
   }
+
+  @Output() clickRow = new EventEmitter<any>() 
+  @Output() add = new EventEmitter<any>() 
 
 
 
@@ -30,20 +34,31 @@ export class DataTableComponent implements OnInit {
     
   }
 
-  clickOnRoW(rowData){
+  clickOnRoW(rowData) {
     this.clickRow.emit(rowData)
   }
 
-  action(action){
-    switch(action){
+  action(action) {
+    switch (action) {
       case 'add':
+
+      if(this.configuration.addPer){
+        this.add.emit('add new')
+      }else{
         this.dialog.open(TableModalComponent, {
-          data:{
+          data: {
             action,
-            columns:this.columns
+            columns: this.columns
           }
         })
-      break;
+        .afterClosed().subscribe(result=>{          
+          if(result){
+            this.add.emit(result)
+          }
+        })
+      }
+
+        break;
     }
 
 

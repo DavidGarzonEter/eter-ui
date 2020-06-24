@@ -1,19 +1,20 @@
 
-<form action="">
-
+<form>
 
     <div *ngFor='let input of data.columns'>
 
         <mat-form-field >
             <input
+
             [type]='input.type' 
-            [formControlName]='input.ID'
+            [name]='input.ID'
+            (input)='onChange(input.ID,$event.target.value)'
             matInput [placeholder]='input.label' />        
             <mat-error>Campo Obligatorio</mat-error>
         </mat-form-field>
     </div>
 
-    <button type="submit" mat-raised-button>Guardar</button>
-
+    <button (click)='onSubmit()'  mat-raised-button>Guardar</button>
 
 </form>
+
