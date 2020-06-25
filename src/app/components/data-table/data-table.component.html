@@ -1,16 +1,25 @@
 <div style="width:100%;">
-  <div style='display: flex; flex-direction: row-reverse;'>
+  
+  <div style='display: flex; flex-direction: row; justify-content: space-between;'>
     
-    <div (click)='action("delete")'>
-      <i class="fa fa-trash btn-accion" style="font-size: 150%; margin-right: 15px;" *ngIf='configuration.delete'></i>
+    <div>
+      <strong><p style='margin:0' *ngIf='selectedRows.length>0 && selectedRows.length<2'> {{selectedRows.length}} Seleccionado </p></strong>
+      <strong><p style='margin:0' *ngIf='selectedRows.length>1'> {{selectedRows.length}} Seleccionados </p></strong>
     </div>
-  
-    <div (click)='action("edit")'>
-      <i class="fa fa-edit btn-accion" style="font-size: 150%; margin-right: 15px;" *ngIf='configuration.edit'></i>
-    </div>
-  
-    <div (click)='action("add")'>
-      <i class="fa fa-plus-circle btn-accion" style="font-size: 150%;margin-right: 15px;" *ngIf='configuration.add'></i>
+
+    <div style='display:flex; flex-direction: row;'>
+      <div (click)='action("delete")' *ngIf='selectedRows.length>0'>
+        <i class="fa fa-trash btn-accion" style="font-size: 150%; margin-right: 15px;" *ngIf='configuration.delete'></i>
+      </div>
+    
+      <div (click)='action("edit")' *ngIf='selectedRows.length==1'>
+        <i class="fa fa-edit btn-accion" style="font-size: 150%; margin-right: 15px;" *ngIf='configuration.edit'></i>
+      </div>
+    
+      <div (click)='action("add")' *ngIf='selectedRows.length==0'>
+        <i class="fa fa-plus-circle btn-accion" style="font-size: 150%;margin-right: 15px;" *ngIf='configuration.add'></i>
+      </div>
+
     </div>
   
   </div>
@@ -18,6 +27,7 @@
  <table class="table_Eter table-hover">
      <thead class="dark">
        <tr>
+       <th *ngIf='configuration.selectable || configuration.delete || configuration.edit'></th>
        <th *ngFor='let column of columns' scope="col" [ngStyle]='column.style'>{{column.label}}</th>
          <!-- <th style='text-align: center;'>
            
@@ -25,9 +35,12 @@
        </tr>
      </thead>
      <tbody class='mat-elevation-z6'>
+       
        <tr style="cursor: pointer;" *ngFor='let row of data' (click)='clickOnRoW(row)' >
-         <th  [ngStyle]='column.style' scope="row" *ngFor='let column of columns'>{{ row[column.ID] }}</th>
+        <th *ngIf='configuration.selectable || configuration.delete || configuration.edit' style='justify-content: center;'> <mat-checkbox color='primary' (click)='clicked($event)' (change)='selection(row, $event)'> </mat-checkbox>  </th> 
+        <th  [ngStyle]='column.style' scope="row" *ngFor='let column of columns'>{{ row[column.ID] }}</th>
        </tr>
+       
  
      </tbody> 
    </table>

@@ -28,7 +28,8 @@ export class AppComponent implements OnInit {
   configurationTable : TableConfiguration = {
     edit:true,
     add:true,
-    delete:false,
+    delete:true,
+    selectable:true,
     addPer:false,
     editPer:false
   }
@@ -67,12 +68,12 @@ export class AppComponent implements OnInit {
       "id": 5,
       "id_compania": 1,
       "nombre": "Técnico"
-  },
-  {
-      "id": 6,
-      "id_compania": 1,
-      "nombre": "Ingeniero"
-  },
+    },
+    {
+        "id": 6,
+        "id_compania": 1,
+        "nombre": "Ingeniero"
+    },
   ]
 
   constructor(
@@ -168,10 +169,20 @@ export class AppComponent implements OnInit {
 
 
   filaSeleccionada($event){
-    console.log($event)
+    console.log('filaSeleccionada', $event)
   }
 
   agregar($event){
-    console.log($event)
+    console.log('agregar', $event)
+  }
+
+  editar($event) {
+    console.log('editar', $event)
+  }
+  eliminar($event) {
+    console.log('eliminar', $event)
+  }
+  seleccionados($event) {
+    console.log('seleccionados', $event)
   }
 }

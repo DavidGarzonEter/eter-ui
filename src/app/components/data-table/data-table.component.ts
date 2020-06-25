@@ -17,13 +17,20 @@ export class DataTableComponent implements OnInit {
     add :false,
     edit:false,
     delete:false,
+    selectable:false,
     addPer:false,
     editPer:false,
   }
 
   @Output() clickRow = new EventEmitter<any>() 
   @Output() add = new EventEmitter<any>() 
+  @Output() edit = new EventEmitter<any>() 
+  @Output() delete = new EventEmitter<any>() 
+  @Output() selected = new EventEmitter<any>() 
+  
 
+
+  selectedRows=[] /** almacena las filas seleccionadas */
 
 
   constructor(
@@ -59,11 +66,38 @@ export class DataTableComponent implements OnInit {
       }
 
         break;
+
+        case 'edit':
+          this.edit.emit(this.selectedRows)
+        break;
+        
+        case 'delete':
+          this.delete.emit(this.selectedRows)
+        break;
     }
 
 
 
 
+  }
+
+  selection(row, $event){
+
+    if($event.checked){
+      this.selectedRows.push(row)
+    }else{
+      let index = this.selectedRows.indexOf(row)
+      this.selectedRows.splice(index,1)
+    }
+    
+    if(this.configuration.selectable){  
+      this.selected.emit(this.selectedRows)
+    }
+
+  }
+
+  clicked($event){
+    event.stopPropagation();
   }
 
 }
