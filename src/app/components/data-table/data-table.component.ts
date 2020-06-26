@@ -56,7 +56,8 @@ export class DataTableComponent implements OnInit {
           data: {
             action,
             columns: this.columns
-          }
+          },
+          width:'60vh'
         })
         .afterClosed().subscribe(result=>{          
           if(result){
@@ -68,7 +69,45 @@ export class DataTableComponent implements OnInit {
         break;
 
         case 'edit':
-          this.edit.emit(this.selectedRows)
+          if(this.configuration.editPer){
+            this.edit.emit(this.selectedRows)
+          }else{
+
+            
+            
+            let columns:any
+            columns = this.columns
+
+            columns.forEach((column, index)=>{
+            
+              Object.keys(this.selectedRows[0]).forEach((key)=>{                                  
+                if(column.ID==key){
+                  columns[index].value = this.selectedRows[0][key]
+                }
+              })
+            })
+
+            console.log(columns)
+
+            
+
+            this.dialog.open(TableModalComponent, {
+              data: {
+                action,
+                columns: this.columns,
+                values: this.selectedRows[0]
+              },
+              width:'60vh'
+            })
+            .afterClosed().subscribe(result=>{          
+              if(result){
+                this.edit.emit(result)
+              }
+            })
+
+          }
+
+
         break;
         
         case 'delete':

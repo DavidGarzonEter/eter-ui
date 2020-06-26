@@ -42,7 +42,7 @@ export class AppComponent implements OnInit {
       style:{
         width:'30%',
         textAlign:'center'
-      }
+      },      
     },
     {
       ID:'nombre',

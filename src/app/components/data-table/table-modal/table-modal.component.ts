@@ -24,7 +24,6 @@ export class TableModalComponent implements OnInit {
   
 
   ngOnInit(): void {
-
     
     let columns = this.data.columns
 
@@ -32,9 +31,17 @@ export class TableModalComponent implements OnInit {
       let text = `{"${element.ID}":""}`
       let json = JSON.parse(text)
       Object.assign(this.modalForm,json)
+
+      if(this.data.action=='edit'){
+        this.modalForm[element.ID] = element.value 
+      }
+      
     });
 
     
+   
+
+
   }
 
   onSubmit(){
