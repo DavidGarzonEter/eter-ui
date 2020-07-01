@@ -1,19 +1,19 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { TableConfiguration } from 'src/app/interfaces/data-table/table-configuration';
-import { TableColumns } from 'src/app/interfaces/data-table/table-columns';
+import { Component, OnInit, Input, Output, EventEmitter, AfterViewInit, OnChanges, SimpleChange, SimpleChanges } from '@angular/core';
+
 import { MatDialog } from '@angular/material/dialog';
 import { TableModalComponent } from './table-modal/table-modal.component';
+
 
 @Component({
   selector: 'data-table',
   templateUrl: './data-table.component.html',
   styleUrls: ['./data-table.component.scss']
 })
-export class DataTableComponent implements OnInit {
+export class DataTableComponent implements OnInit, OnChanges {
 
-  @Input() columns:TableColumns
+  @Input() columns
   @Input() data:any
-  @Input() configuration:TableConfiguration = {
+  @Input() configuration = {
     add :false,
     edit:false,
     delete:false,
@@ -31,6 +31,12 @@ export class DataTableComponent implements OnInit {
 
 
   selectedRows=[] /** almacena las filas seleccionadas */
+  checkboxs={}
+  selectAll = false
+  indeterminateState = false
+  filters
+  originalData = []
+
 
 
   constructor(
@@ -38,8 +44,31 @@ export class DataTableComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    
+
   }
+
+  ngOnChanges(changes:SimpleChanges){
+    if(changes.data){
+      this.data.forEach(row => {
+        this.checkboxs[row.id]=false
+      });  
+      // console.log(this.checkboxs)}
+
+      
+
+      if(this.originalData.length==0){
+
+        let data  = this.data
+        data.forEach(element => {
+          this.originalData.push(element)
+        });
+        // console.log(this.originalData)
+      }
+
+    }
+
+  }
+
 
   clickOnRoW(rowData) {
     this.clickRow.emit(rowData)
@@ -87,7 +116,7 @@ export class DataTableComponent implements OnInit {
               })
             })
 
-            console.log(columns)
+            // console.log(columns)
 
             
 
@@ -115,12 +144,15 @@ export class DataTableComponent implements OnInit {
         break;
     }
 
-
-
-
   }
 
   selection(row, $event){
+
+    // debugger;
+
+    this.checkboxs[row.id]=$event.checked
+
+    // console.log(this.checkboxs)
 
     if($event.checked){
       this.selectedRows.push(row)
@@ -133,10 +165,75 @@ export class DataTableComponent implements OnInit {
       this.selected.emit(this.selectedRows)
     }
 
+    if(this.selectedRows.length == this.data.length){
+      this.selectAll = true
+    }else{
+      this.selectAll = false
+    }
+
+    if(this.selectedRows.length>0 && this.selectedRows.length<this.data.length){
+      this.indeterminateState=true
+    }else{
+      this.indeterminateState=false
+    }
+    
+
   }
 
   clicked($event){
     event.stopPropagation();
   }
+
+  seletecAllEvent($event){
+
+    this.indeterminateState=false
+
+    if(this.selectAll){
+      Object.keys(this.checkboxs).forEach((key)=>{
+        this.checkboxs[key]=true
+      })
+
+      this.selectedRows=[]
+      let data  = this.data
+      data.forEach(element => {
+        this.selectedRows.push(element)
+      });
+
+      this.selected.emit(this.selectedRows)
+
+    }else{
+      Object.keys(this.checkboxs).forEach((key)=>{
+        this.checkboxs[key]=false
+      })
+
+      this.selectedRows = []
+      this.selected.emit(this.selectedRows)
+
+    }
+
+  }
+  changeFilters(){
+    // console.log(this.filters)
+
+
+    this.data = this.originalData.filter(data =>{
+      for(let key of Object.keys(data)){
+
+        let result = data[key].toString().toLowerCase().includes(this.filters.toLowerCase())
+        if(result){
+          // console.log(data)
+          return data
+        }
+
+      }
+
+    })
+
+    // console.log(this.data)
+    // console.log(this.originalData)
+
+
+  }
+
 
 }

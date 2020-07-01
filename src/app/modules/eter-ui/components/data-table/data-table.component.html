@@ -2,12 +2,19 @@
   
   <div style='display: flex; flex-direction: row; justify-content: space-between;'>
     
-    <div>
+    <div style='flex:1'>
       <strong><p style='margin:0' *ngIf='selectedRows.length>0 && selectedRows.length<2'> {{selectedRows.length}} Seleccionado </p></strong>
       <strong><p style='margin:0' *ngIf='selectedRows.length>1'> {{selectedRows.length}} Seleccionados </p></strong>
+      <strong><p style='margin:0' *ngIf='selectedRows.length<1'> TITULO </p></strong>
     </div>
 
-    <div style='display:flex; flex-direction: row;'>
+    <div style='flex:3; padding-right: 10px;'>
+      <mat-form-field class='filter'>
+        <input type="text" [(ngModel)]='filters' (keyup)='changeFilters()'  matInput placeholder="Filtrar">
+      </mat-form-field>
+    </div>
+
+    <div style='flex:0.5; display:flex; flex-direction: row; justify-content: flex-end;'>
       <div (click)='action("delete")' *ngIf='selectedRows.length>0'>
         <i class="fa fa-trash btn-accion" style="font-size: 150%; margin-right: 15px;" *ngIf='configuration.delete'></i>
       </div>
@@ -27,7 +34,8 @@
  <table class="table_Eter table-hover">
      <thead class="dark">
        <tr>
-       <th *ngIf='configuration.selectable || configuration.delete || configuration.edit'></th>
+        <th *ngIf='configuration.selectable || configuration.delete || configuration.edit' style='justify-content: center;'> 
+          <mat-checkbox color='primary' (change)='seletecAllEvent($event)' [(ngModel)]='selectAll' [indeterminate]='indeterminateState'> </mat-checkbox>  </th> 
        <th *ngFor='let column of columns' scope="col" [ngStyle]='column.style'>{{column.label}}</th>
          <!-- <th style='text-align: center;'>
            
@@ -37,7 +45,7 @@
      <tbody class='mat-elevation-z6'>
        
        <tr style="cursor: pointer;" *ngFor='let row of data' (click)='clickOnRoW(row)' >
-        <th *ngIf='configuration.selectable || configuration.delete || configuration.edit' style='justify-content: center;'> <mat-checkbox color='primary' (click)='clicked($event)' (change)='selection(row, $event)'> </mat-checkbox>  </th> 
+        <th *ngIf='configuration.selectable || configuration.delete || configuration.edit' style='justify-content: center;'> <mat-checkbox color='primary' [(ngModel)]='checkboxs[row.id]' (click)='clicked($event)' (change)='selection(row, $event)'> </mat-checkbox>  </th> 
         <th  [ngStyle]='column.style' scope="row" *ngFor='let column of columns'>{{ row[column.ID] }}</th>
        </tr>
        

@@ -1,0 +1,44 @@
+<div>
+    <div style='display:flex; justify-content: space-between;'>
+        <div>
+    
+        </div>
+        <div>
+            <strong>
+                <h3 *ngIf='data.action=="edit"' > Editar   </h3>
+                <h3 *ngIf='data.action=="add"' > Agregar   </h3>
+            </strong>
+        </div>
+        <div mat-dialog-close>
+            <i class="fa fa-times-circle" style="font-size: 150%; position: relative;" ></i>
+        </div>
+    </div>
+    
+    <form>
+    
+        <div *ngFor='let input of data.columns'>
+    
+            <mat-form-field >
+                <input *ngIf='data.action=="edit"'
+    
+                [type]='input.type' 
+                [name]='input.ID'
+                [value]='input.value'
+                (input)='onChange(input.ID,$event.target.value)'
+                matInput [placeholder]='input.label' />   
+                
+                <input *ngIf='data.action=="add"'
+                [type]='input.type' 
+                [name]='input.ID'
+                (input)='onChange(input.ID,$event.target.value)'
+                matInput [placeholder]='input.label' />   
+    
+                <mat-error>Campo Obligatorio</mat-error>
+            </mat-form-field>
+        </div>
+    
+        <button (click)='onSubmit()' color='primary' mat-raised-button>Guardar</button>
+    
+    </form>
+</div>
+

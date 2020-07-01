@@ -86,8 +86,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { HttpClientModule } from '@angular/common/http';
-import { DataTableComponent } from 'src/app/components/data-table/data-table.component';
-import { TableModalComponent } from 'src/app/components/data-table/table-modal/table-modal.component';
+import { DataTableComponent } from './components/data-table/data-table.component';
+import { TableModalComponent } from './components/data-table/table-modal/table-modal.component';
+
 
 @NgModule({
   declarations: [
@@ -109,7 +110,9 @@ import { TableModalComponent } from 'src/app/components/data-table/table-modal/t
     DataTableComponent,
     TableModalComponent
   ],
-  providers: [],
+  providers: [
+    
+  ],
   entryComponents:[
     TableModalComponent
   ]

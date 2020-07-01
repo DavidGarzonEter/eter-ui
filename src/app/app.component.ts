@@ -3,8 +3,9 @@ import { SessionService } from './modules/services/session.service';
 import { MessageService } from './modules/services/message.service';
 import { CryptoService } from './modules/services/crypto.service';
 import { HttpService } from './modules/services/http.service';
-import { TableColumns } from './interfaces/data-table/table-columns';
-import { TableConfiguration } from './interfaces/data-table/table-configuration';
+import { TableConfiguration } from './modules/interfaces/data-table/table-configuration';
+import { TableColumns } from './modules/interfaces/data-table/table-columns';
+
 
 @Component({
   selector: 'app-root',
@@ -42,7 +43,7 @@ export class AppComponent implements OnInit {
       style:{
         width:'30%',
         textAlign:'center'
-      },      
+      },
     },
     {
       ID:'nombre',
@@ -63,18 +64,7 @@ export class AppComponent implements OnInit {
       }
     }
   ]
-  body = [
-    {
-      "id": 5,
-      "id_compania": 1,
-      "nombre": "Técnico"
-    },
-    {
-        "id": 6,
-        "id_compania": 1,
-        "nombre": "Ingeniero"
-    },
-  ]
+  body = []
 
   constructor(
     private session: SessionService,
@@ -89,14 +79,10 @@ export class AppComponent implements OnInit {
       res=>{
         if(res['code']===0){
           this.body=res['body']
-
-          this.body.push(res['body'][0])
         }
       }
     )
 
-  
-    
   }
 
   openMessage(param) {

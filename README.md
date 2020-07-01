@@ -12,3 +12,9 @@
     "sctrictMetadataEmit":true
   }
 ```
+
+npm run packagr -->> compilar y empaquetar el modulo eter-ui
+
+cd dist
+
+npm publish 

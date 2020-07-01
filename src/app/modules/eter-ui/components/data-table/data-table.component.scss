@@ -31,3 +31,31 @@ th {
     cursor: pointer;
 }
 
+
+mat-form-field{
+    padding: 0 !important;
+    width: 100%;
+}
+
+
+.filter{
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+
+.filter ::ng-deep .mat-form-field-underline{
+    bottom:3px !important;
+}
+
+.filter ::ng-deep .mat-form-field-infix{
+    border: 0 !important;
+}
+
+.filter ::ng-deep .mat-form-field-wrapper{
+    padding: 0;
+}
+
+.filter ::ng-deep .mat-form-field-appearance-legacy .mat-form-field-wrapper{
+    padding: 0;
+}
