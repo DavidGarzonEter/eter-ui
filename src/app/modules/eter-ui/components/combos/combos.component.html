@@ -1,0 +1,24 @@
+<div style="display:flex; flex-direction: row; justify-content: space-between; ">
+
+    <div>
+        <mat-form-field >
+            <mat-label style="text-transform: capitalize;">{{combo}}</mat-label>
+            <mat-select [(value)]="selected" (selectionChange)='selecteData(selected)'>    
+                <mat-option value="{{data.id}}" *ngFor='let data of dataCombos'>{{data[combo]}}</mat-option>    
+            </mat-select>    
+        </mat-form-field>
+
+       
+    </div>  
+    
+   
+ 
+
+</div>
+
+
+
+
+
+
+

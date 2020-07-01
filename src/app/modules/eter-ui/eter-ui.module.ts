@@ -88,12 +88,14 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { HttpClientModule } from '@angular/common/http';
 import { DataTableComponent } from './components/data-table/data-table.component';
 import { TableModalComponent } from './components/data-table/table-modal/table-modal.component';
+import { CombosComponent } from './components/combos/combos.component';
 
 
 @NgModule({
   declarations: [
     DataTableComponent,
-    TableModalComponent
+    TableModalComponent,
+    CombosComponent
   ],
   imports: [
     CommonModule,
@@ -108,7 +110,8 @@ import { TableModalComponent } from './components/data-table/table-modal/table-m
   exports: [
     Material,
     DataTableComponent,
-    TableModalComponent
+    TableModalComponent,
+    CombosComponent
   ],
   providers: [
     

@@ -5,7 +5,7 @@ import { CryptoService } from './modules/services/crypto.service';
 import { HttpService } from './modules/services/http.service';
 import { TableConfiguration } from './modules/interfaces/data-table/table-configuration';
 import { TableColumns } from './modules/interfaces/data-table/table-columns';
-
+import { CombosConfiguration } from './modules/interfaces/combos/combos-configuration';
 
 @Component({
   selector: 'app-root',
@@ -13,6 +13,8 @@ import { TableColumns } from './modules/interfaces/data-table/table-columns';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
+  
+ 
   title = 'eter-ui';
 
   textToCrypt;
@@ -25,6 +27,16 @@ export class AppComponent implements OnInit {
   valueSet
   valueGet
 
+  dataCombos = []
+  
+
+  combosConfig: CombosConfiguration[] = [
+    {
+      ID:'pais'   
+    },
+
+    
+  ]
 
   configurationTable : TableConfiguration = {
     edit:true,
@@ -81,7 +93,17 @@ export class AppComponent implements OnInit {
           this.body=res['body']
         }
       }
+      
     )
+
+    this.http.getData('http://localhost:3000/api/v1/paises').subscribe(
+      res=>{
+        if(res['code']===0){
+          this.dataCombos=res['body']        
+         }
+      }
+    ) 
+        
 
   }
 
@@ -171,4 +193,8 @@ export class AppComponent implements OnInit {
   seleccionados($event) {
     console.log('seleccionados', $event)
   }
+  comboValueID($event){
+    console.log('Id combo Selecionado', $event)
+
+  } 
 }

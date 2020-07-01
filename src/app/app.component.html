@@ -119,14 +119,34 @@
                     (edit)='editar($event)'
                     (delete)='eliminar($event)'
                     (selected)='seleccionados($event)'
-                    ></data-table> 
-                    
-                    
-                    
+                    ></data-table>                   
 
-                </mat-expansion-panel>              
+                </mat-expansion-panel>   
+                
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Combos 
+                        </mat-panel-title>                                               
+                    </mat-expansion-panel-header>
+
+                    <combos
+
+                    [dataCombos]='dataCombos' 
+                    [configuration]='combosConfig'  
+                    (changeOption)='comboValueID($event)'
+                                   
+                      
+                    ></combos>
+              
+
+                    </mat-expansion-panel>
+
+                
 
             </mat-accordion>
+
+        
         </div>
         
     </mat-tab>
