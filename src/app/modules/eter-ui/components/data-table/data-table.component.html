@@ -5,7 +5,7 @@
     <div style='flex:1'>
       <strong><p style='margin:0' *ngIf='selectedRows.length>0 && selectedRows.length<2'> {{selectedRows.length}} Seleccionado </p></strong>
       <strong><p style='margin:0' *ngIf='selectedRows.length>1'> {{selectedRows.length}} Seleccionados </p></strong>
-      <strong><p style='margin:0' *ngIf='selectedRows.length<1'> TITULO </p></strong>
+      <strong><p style='margin:0' *ngIf='selectedRows.length<1'> {{title}} </p></strong>
     </div>
 
     <div style='flex:3; padding-right: 10px;'>

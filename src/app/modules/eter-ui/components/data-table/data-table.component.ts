@@ -11,6 +11,7 @@ import { TableModalComponent } from './table-modal/table-modal.component';
 })
 export class DataTableComponent implements OnInit, OnChanges {
 
+  @Input() title
   @Input() columns
   @Input() data:any
   @Input() configuration = {
