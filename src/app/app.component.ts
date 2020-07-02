@@ -30,13 +30,10 @@ export class AppComponent implements OnInit {
   dataCombos = []
   
 
-  combosConfig: CombosConfiguration[] = [
+  combosConfig: CombosConfiguration =
     {
-      ID:'pais'   
-    },
-
-    
-  ]
+      visibleField:'pais'   
+    }
 
   configurationTable : TableConfiguration = {
     edit:true,
@@ -194,7 +191,7 @@ export class AppComponent implements OnInit {
     console.log('seleccionados', $event)
   }
   comboValueID($event){
-    console.log('Id combo Selecionado', $event)
+    console.log($event)
+  }
 
-  } 
 }

@@ -8,12 +8,8 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class CombosComponent implements OnInit {
 
-  selected
-
   @Input() dataCombos :any
   @Input() configuration:any
-
-  combo
 
   @Output() changeOption = new EventEmitter<any>()  
 
@@ -21,12 +17,13 @@ export class CombosComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.combo = this.configuration[0].ID
 
   }
 
-  selecteData(e){        
-    this.changeOption.emit(e)  
+  selectedData($event){    
+    
+    // console.log($event.value)
+    this.changeOption.emit($event.value)  
   }
 
 

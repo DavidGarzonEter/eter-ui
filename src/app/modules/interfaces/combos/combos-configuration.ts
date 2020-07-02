@@ -1,3 +1,3 @@
 export interface CombosConfiguration {
-   ID?:string
+   visibleField?:string
 }
