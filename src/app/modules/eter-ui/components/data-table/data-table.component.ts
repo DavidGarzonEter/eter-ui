@@ -22,6 +22,7 @@ export class DataTableComponent implements OnInit, OnChanges {
     addPer:false,
     editPer:false,
   }
+  @Input() reloadTable : EventEmitter<any>
 
   @Output() clickRow = new EventEmitter<any>() 
   @Output() add = new EventEmitter<any>() 
@@ -40,30 +41,39 @@ export class DataTableComponent implements OnInit, OnChanges {
 
 
 
+
   constructor(
     public dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
 
+    if(this.reloadTable){
+      this.reloadTable.subscribe(res=>{
+        console.log(res)
+        this.originalData=[]
+      })
+    }
+
+
   }
 
   ngOnChanges(changes:SimpleChanges){
-    if(changes.data){
-      this.data.forEach(row => {
-        this.checkboxs[row.id]=false
-      });  
-      // console.log(this.checkboxs)}
-
+    if(changes.data){      
       
-
-      if(this.originalData.length==0){
-
-        let data  = this.data
-        data.forEach(element => {
-          this.originalData.push(element)
-        });
-        // console.log(this.originalData)
+      if(this.data){
+        this.data.forEach(row => {
+          this.checkboxs[row.id]=false
+        });  
+        // console.log(this.checkboxs)}      
+  
+        if(this.originalData.length==0){
+          let data  = this.data
+          data.forEach(element => {
+            this.originalData.push(element)
+          });
+          // console.log(this.originalData)
+        }
       }
 
     }
