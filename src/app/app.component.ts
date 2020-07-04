@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter } from '@angular/core';
 import { SessionService } from './modules/services/session.service';
 import { MessageService } from './modules/services/message.service';
 import { CryptoService } from './modules/services/crypto.service';
@@ -6,6 +6,7 @@ import { HttpService } from './modules/services/http.service';
 import { TableConfiguration } from './modules/interfaces/data-table/table-configuration';
 import { TableColumns } from './modules/interfaces/data-table/table-columns';
 import { CombosConfiguration } from './modules/interfaces/combos/combos-configuration';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -28,7 +29,10 @@ export class AppComponent implements OnInit {
   valueGet
 
   dataCombos = []
+
   
+
+  recargarTabla = new EventEmitter<any>()
 
   combosConfig: CombosConfiguration =
     {
@@ -79,18 +83,17 @@ export class AppComponent implements OnInit {
     private session: SessionService,
     private message: MessageService,
     private crypt : CryptoService,
-    private http : HttpService
+    private http : HttpService,
+    private httpClient : HttpClient
   ) { }
 
   ngOnInit() {
-
     this.http.getData('http://localhost:3000/api/v1/cargos?id_compania=1').subscribe(
       res=>{
         if(res['code']===0){
           this.body=res['body']
         }
-      }
-      
+      }      
     )
 
     this.http.getData('http://localhost:3000/api/v1/paises').subscribe(
@@ -186,6 +189,7 @@ export class AppComponent implements OnInit {
   }
   eliminar($event) {
     console.log('eliminar', $event)
+    this.recargarTabla.emit()
   }
   seleccionados($event) {
     console.log('seleccionados', $event)

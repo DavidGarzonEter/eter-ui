@@ -27,6 +27,7 @@ export class TableModalComponent implements OnInit {
     
     let columns = this.data.columns
 
+
     this.data.columns.forEach(element => {        
       let text = `{"${element.ID}":""}`
       let json = JSON.parse(text)

@@ -52,6 +52,8 @@ export class DataTableComponent implements OnInit, OnChanges {
       this.reloadTable.subscribe(res=>{
         console.log(res)
         this.originalData=[]
+        this.selectAll=false
+        this.seletecAllEvent('')
       })
     }
 
@@ -141,7 +143,7 @@ export class DataTableComponent implements OnInit, OnChanges {
             })
             .afterClosed().subscribe(result=>{          
               if(result){
-                this.edit.emit(result)
+                this.edit.emit({new:result, old:this.selectedRows[0]})
               }
             })
 
