@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
-import { HttpService } from 'src/app/modules/services/http.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-table-modal',
@@ -17,7 +17,7 @@ export class TableModalComponent implements OnInit {
     public dialogRef: MatDialogRef<TableModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data,
     private formBuilder : FormBuilder,
-    private http : HttpService
+    private http : HttpClient
     
     )
     {}
@@ -54,7 +54,7 @@ export class TableModalComponent implements OnInit {
       
       if(element.paramsCombo){
 
-        this.http.getData(element.paramsCombo.url).subscribe(
+        this.http.get(element.paramsCombo.url).subscribe(
           res=>{
             if(res['code']===0){
               this.dataCombo[element.ID]=res['body']

@@ -15,7 +15,6 @@ import { CombosConfiguration } from './modules/interfaces/combos/combos-configur
 })
 export class AppComponent implements OnInit {
   
- 
   title = 'eter-ui';
 
   textToCrypt;
@@ -29,8 +28,6 @@ export class AppComponent implements OnInit {
   valueGet
 
   dataCombos = []
-
-  
 
   recargarTabla = new EventEmitter<any>()
 
