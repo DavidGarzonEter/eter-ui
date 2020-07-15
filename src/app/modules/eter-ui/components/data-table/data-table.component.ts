@@ -14,6 +14,7 @@ export class DataTableComponent implements OnInit, OnChanges {
   @Input() title
   @Input() columns
   @Input() data:any
+  @Input() combo
   @Input() configuration = {
     add :false,
     edit:false,
@@ -29,6 +30,8 @@ export class DataTableComponent implements OnInit, OnChanges {
   @Output() edit = new EventEmitter<any>() 
   @Output() delete = new EventEmitter<any>() 
   @Output() selected = new EventEmitter<any>() 
+
+  
   
 
 
@@ -47,6 +50,8 @@ export class DataTableComponent implements OnInit, OnChanges {
   ) { }
 
   ngOnInit(): void {
+
+    
 
     if(this.reloadTable){
       this.reloadTable.subscribe(res=>{
@@ -90,9 +95,11 @@ export class DataTableComponent implements OnInit, OnChanges {
   action(action) {
     switch (action) {
       case 'add':
+      
 
       if(this.configuration.addPer){
-        this.add.emit('add new')
+               this.add.emit('add new')
+        
       }else{
         this.dialog.open(TableModalComponent, {
           data: {
@@ -108,14 +115,14 @@ export class DataTableComponent implements OnInit, OnChanges {
         })
       }
 
+     
+
         break;
 
         case 'edit':
           if(this.configuration.editPer){
             this.edit.emit(this.selectedRows)
-          }else{
-
-            
+          }else{       
             
             let columns:any
             columns = this.columns

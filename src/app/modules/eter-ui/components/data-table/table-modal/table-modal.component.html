@@ -7,6 +7,7 @@
             <strong>
                 <h3 *ngIf='data.action=="edit"' > Editar   </h3>
                 <h3 *ngIf='data.action=="add"' > Agregar   </h3>
+               
             </strong>
         </div>
         <div mat-dialog-close>
@@ -19,23 +20,60 @@
         <div *ngFor='let input of data.columns'>
     
             <mat-form-field >
-                <input *ngIf='data.action=="edit"'
+
+                <div  *ngIf='data.action=="edit"'>
+
+                <div *ngIf='input.type=="combo"; else otherInputEdit'>
+                                        
+                    <mat-select value=input.value (selectionChange)='onChange(input.ID,$event.value)' placeholder='{{input.paramsCombo.visibleField}}'>
+                        <mat-option *ngFor='let data of dataCombo' value='{{data[input.paramsCombo.selectionField]}}'>{{data[input.paramsCombo.visibleField]}}</mat-option>
+                      </mat-select>  
+                </div>              
+              
+               <ng-template #otherInputEdit>
+                <input
     
                 [type]='input.type' 
                 [name]='input.ID'
                 [value]='input.value'
                 (input)='onChange(input.ID,$event.target.value)'
                 matInput [placeholder]='input.label' />   
-                
-                <input *ngIf='data.action=="add"'
+               </ng-template>
+
+                 </div>
+
+                <div  *ngIf='input.type=="combo"; else otherInput'>
+                                    
+                    <mat-select  (selectionChange)='onChange(input.ID,$event.value)' placeholder='{{input.paramsCombo.visibleField}}'>
+                      <mat-option *ngFor='let data of dataCombo' value='{{data[input.paramsCombo.selectionField]}}'>{{data[input.paramsCombo.visibleField]}}</mat-option>
+                    </mat-select>
+                  
+                </div>
+              
+                <ng-template #otherInput >
+                    <input                              
                 [type]='input.type' 
                 [name]='input.ID'
                 (input)='onChange(input.ID,$event.target.value)'
-                matInput [placeholder]='input.label' />   
-    
+                matInput [placeholder]='input.label' />  
+
+                </ng-template>
+                                         
                 <mat-error>Campo Obligatorio</mat-error>
             </mat-form-field>
+
+           
+
+             
+
+        
+          
+            
+
+            
         </div>
+
+     
     
         <button (click)='onSubmit()' color='primary' mat-raised-button>Guardar</button>
     
