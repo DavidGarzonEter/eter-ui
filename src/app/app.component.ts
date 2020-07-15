@@ -76,22 +76,22 @@ export class AppComponent implements OnInit {
         textAlign:'center' //text-align
       }
     },
-      {
-        ID:'responsable',
-        label:'Responsable',
-        type:'combo',
-        paramsCombo:{
-          url:'http://localhost:3000/api/v1/paises',
-          visibleField:'pais',
-          selectionField:'id'
-        },
-        style:{
-          width:'30%',
-          textAlign:'center' //text-align
-        }
-       
-
+    {
+      ID:'responsable',
+      label:'Responsable',
+      type:'combo',
+      paramsCombo:{
+        url:`http://localhost:3000/api/v1/usuarios?id_compania=1`,
+        visibleField:'nombre',
+        selectionField:'cedula'
+      },
+      style:{
+        width:'30%',
+        textAlign:'center' //text-align
       }
+      
+
+    }
 
   ]
   body = []

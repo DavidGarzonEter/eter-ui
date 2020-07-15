@@ -21,42 +21,42 @@
     
             <mat-form-field >
 
-                <div  *ngIf='data.action=="edit"'>
+                <div  *ngIf='data.action=="edit"; else Agregar'>
 
-                <div *ngIf='input.type=="combo"; else otherInputEdit'>
-                                        
-                    <mat-select value=input.value (selectionChange)='onChange(input.ID,$event.value)' placeholder='{{input.paramsCombo.visibleField}}'>
-                        <mat-option *ngFor='let data of dataCombo' value='{{data[input.paramsCombo.selectionField]}}'>{{data[input.paramsCombo.visibleField]}}</mat-option>
-                      </mat-select>  
-                </div>              
-              
-               <ng-template #otherInputEdit>
-                <input
-    
-                [type]='input.type' 
-                [name]='input.ID'
-                [value]='input.value'
-                (input)='onChange(input.ID,$event.target.value)'
-                matInput [placeholder]='input.label' />   
-               </ng-template>
+                        <div *ngIf='input.type=="combo"; else otherInputEdit'>
+                        
+                            <mat-select [value]='input.value' (selectionChange)='onChange(input.ID,$event.value)'
+                                placeholder='{{input.paramsCombo.visibleField}}'>
+                                <mat-option *ngFor='let data of dataCombo[input.ID]' value='{{data[input.paramsCombo.selectionField]}}'>
+                                    {{data[input.paramsCombo.visibleField]}}</mat-option>
+                            </mat-select>
+                        </div>
+                        
+                        <ng-template #otherInputEdit>
+                            <input [type]='input.type' [name]='input.ID' [value]='input.value' 
+                                (input)='onChange(input.ID,$event.target.value)'
+                                matInput [placeholder]='input.label' />
+                        </ng-template>
 
                  </div>
 
-                <div  *ngIf='input.type=="combo"; else otherInput'>
+                <ng-template #Agregar>
+                    <div  *ngIf='input.type=="combo"; else otherInput'>
                                     
-                    <mat-select  (selectionChange)='onChange(input.ID,$event.value)' placeholder='{{input.paramsCombo.visibleField}}'>
-                      <mat-option *ngFor='let data of dataCombo' value='{{data[input.paramsCombo.selectionField]}}'>{{data[input.paramsCombo.visibleField]}}</mat-option>
-                    </mat-select>
+                        <mat-select  (selectionChange)='onChange(input.ID,$event.value)' placeholder='{{input.paramsCombo.visibleField}}'>
+                          <mat-option *ngFor='let data of dataCombo[input.ID]' value='{{data[input.paramsCombo.selectionField]}}'>{{data[input.paramsCombo.visibleField]}}</mat-option>
+                        </mat-select>
+                      
+                    </div>
                   
-                </div>
-              
-                <ng-template #otherInput >
-                    <input                              
-                [type]='input.type' 
-                [name]='input.ID'
-                (input)='onChange(input.ID,$event.target.value)'
-                matInput [placeholder]='input.label' />  
-
+                    <ng-template #otherInput >
+                        <input                              
+                    [type]='input.type' 
+                    [name]='input.ID'
+                    (input)='onChange(input.ID,$event.target.value)'
+                    matInput [placeholder]='input.label' />  
+    
+                    </ng-template>
                 </ng-template>
                                          
                 <mat-error>Campo Obligatorio</mat-error>
