@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import { HttpService } from 'src/app/modules/services/http.service';
 
 @Component({
   selector: 'app-table-modal',
@@ -10,11 +11,15 @@ import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 export class TableModalComponent implements OnInit {
 
   modalForm= {}
+  dataCombo
 
   constructor(
     public dialogRef: MatDialogRef<TableModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data,
-    private formBuilder : FormBuilder)
+    private formBuilder : FormBuilder,
+    private http : HttpService
+    
+    )
     {}
 
   onNoClick(): void {
@@ -26,9 +31,12 @@ export class TableModalComponent implements OnInit {
   ngOnInit(): void {
     
     let columns = this.data.columns
+    console.log(this.data.columns)
 
 
-    this.data.columns.forEach(element => {        
+    this.data.columns.forEach(element => {  
+   
+
       let text = `{"${element.ID}":""}`
       let json = JSON.parse(text)
       Object.assign(this.modalForm,json)
@@ -36,6 +44,25 @@ export class TableModalComponent implements OnInit {
       if(this.data.action=='edit'){
         this.modalForm[element.ID] = element.value 
       }
+
+      
+      if(element.paramsCombo){
+
+        this.http.getData(element.paramsCombo.url).subscribe(
+          res=>{
+            if(res['code']===0){
+              this.dataCombo=res['body']
+              console.log(this.dataCombo)
+            }
+          }
+        )
+       
+        
+      }  
+
+     
+
+      console.log(element) 
       
     });
 
@@ -50,8 +77,10 @@ export class TableModalComponent implements OnInit {
   }
 
   onChange(id, $event){
-
+    
+    console.log($event, id)
     this.modalForm[id] = $event
+    
 
 
   }

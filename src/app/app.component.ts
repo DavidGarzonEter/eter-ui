@@ -6,7 +6,7 @@ import { HttpService } from './modules/services/http.service';
 import { TableConfiguration } from './modules/interfaces/data-table/table-configuration';
 import { TableColumns } from './modules/interfaces/data-table/table-columns';
 import { CombosConfiguration } from './modules/interfaces/combos/combos-configuration';
-import { HttpClient } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-root',
@@ -54,7 +54,7 @@ export class AppComponent implements OnInit {
       label:'id',
       type:'number',
       style:{
-        width:'30%',
+        width:'10%',
         textAlign:'center'
       },
     },
@@ -72,10 +72,27 @@ export class AppComponent implements OnInit {
       label:'id compañia ',
       type:'text',
       style:{
-        width:'40%',
+        width:'30%',
         textAlign:'center' //text-align
       }
-    }
+    },
+      {
+        ID:'responsable',
+        label:'Responsable',
+        type:'combo',
+        paramsCombo:{
+          url:'http://localhost:3000/api/v1/paises',
+          visibleField:'pais',
+          selectionField:'id'
+        },
+        style:{
+          width:'30%',
+          textAlign:'center' //text-align
+        }
+       
+
+      }
+
   ]
   body = []
 
@@ -84,11 +101,10 @@ export class AppComponent implements OnInit {
     private message: MessageService,
     private crypt : CryptoService,
     private http : HttpService,
-    private httpClient : HttpClient
   ) { }
 
   ngOnInit() {
-    this.http.getData('http://localhost:3000/api/v1/cargos?id_compania=1').subscribe(
+    this.http.getData('http://localhost:3000/api/v1/areas?id_compania=1').subscribe(
       res=>{
         if(res['code']===0){
           this.body=res['body']
