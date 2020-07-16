@@ -7,6 +7,9 @@ import { TableConfiguration } from './modules/interfaces/data-table/table-config
 import { TableColumns } from './modules/interfaces/data-table/table-columns';
 import { CombosConfiguration } from './modules/interfaces/combos/combos-configuration';
 
+declare var require: any
+const jsreport = require('jsreport-browser-client-dist');
+
 
 @Component({
   selector: 'app-root',
@@ -15,6 +18,8 @@ import { CombosConfiguration } from './modules/interfaces/combos/combos-configur
 })
 export class AppComponent implements OnInit {
   
+  urlRequest
+  bodyRequest
   title = 'eter-ui';
 
   textToCrypt;
@@ -101,6 +106,24 @@ export class AppComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+
+
+
+    jsreport.serverUrl = 'http://localhost:5488'
+
+    let request = {
+      "data": {
+          "to": "Gael Mantilla",
+          "from": "Natalia Guevara",
+          "price": 5400
+      },
+      "template": {
+          "name": "invoice"
+      }
+  }
+
+  jsreport.render('_blank', request);
+
     this.http.getData('http://localhost:3000/api/v1/areas?id_compania=1').subscribe(
       res=>{
         if(res['code']===0){
@@ -132,7 +155,9 @@ export class AppComponent implements OnInit {
         this.message.Error('Error!', 'Mensaje personalizado de Error', true)
         break;
       case 'Info':
-        this.message.Info('Informacion!', 'Mensaje personalizado de informacion', true)
+        this.message.Info('Informacion!', 'Mensaje personalizado de informacion', true).then(res=>{
+          console.log(res)
+        })
         break;
       case 'SuccessToast':
         this.message.SuccessToast('Mensaje personalizado de correcto.')
@@ -209,6 +234,17 @@ export class AppComponent implements OnInit {
   }
   comboValueID($event){
     console.log($event)
+  }
+
+
+  sendHttpRequest(){
+    let body = JSON.parse(this.bodyRequest)
+    console.log(body)
+    // return;
+    this.http.postData(this.urlRequest,body).subscribe(
+      res=>console.log(res),
+      err=>console.log(err)
+    )
   }
 
 }

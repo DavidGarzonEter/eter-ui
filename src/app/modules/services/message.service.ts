@@ -10,63 +10,95 @@ export class MessageService {
 
 
   Error(title:string, message:string, showCancelButton:boolean=false,confirmButtonText:string='Aceptar', cancelButtonText:string='Cancelar'){
-    Swal.fire({
-      title: title,
-      text: message,
-      icon: 'error',
-      showCancelButton: showCancelButton,
-      confirmButtonText: confirmButtonText,
-      cancelButtonText: cancelButtonText,
-      customClass: {
-        confirmButton: 'confirm-button-class',
-        cancelButton: 'cancel-button-class',
-      }
+    return new Promise((resolve,reject)=>{
+      Swal.fire({
+        title: title,
+        text: message,
+        icon: 'error',
+        showCancelButton: showCancelButton,
+        confirmButtonText: confirmButtonText,
+        cancelButtonText: cancelButtonText,
+        customClass: {
+          confirmButton: 'confirm-button-class',
+          cancelButton: 'cancel-button-class',
+        }
+      }).then((result) => {
+        if (result.value) {
+          resolve(true)
+        } else if (result.dismiss === Swal.DismissReason.cancel) {
+          resolve(false)
+        }
+      })
     })
   }
 
   Success(title:string, message:string, showCancelButton:boolean=false,confirmButtonText:string='Aceptar', cancelButtonText:string='Cancelar'){
 
-    Swal.fire({
-      title: title,
-      text: message,
-      icon: 'success',
-      showCancelButton: showCancelButton,
-      confirmButtonText: confirmButtonText,
-      cancelButtonText: cancelButtonText,
-      customClass: {
-        confirmButton: 'confirm-button-class',
-        cancelButton: 'cancel-button-class',
-      }
+    return new Promise((resolve,reject)=>{
+      Swal.fire({
+        title: title,
+        text: message,
+        icon: 'success',
+        showCancelButton: showCancelButton,
+        confirmButtonText: confirmButtonText,
+        cancelButtonText: cancelButtonText,
+        customClass: {
+          confirmButton: 'confirm-button-class',
+          cancelButton: 'cancel-button-class',
+        }
+      }).then((result) => {
+        if (result.value) {
+          resolve(true)
+        } else if (result.dismiss === Swal.DismissReason.cancel) {
+          resolve(false)
+        }
+      })
     })
   }
 
   Warning(title:string, message:string, showCancelButton:boolean=false,confirmButtonText:string='Aceptar', cancelButtonText:string='Cancelar'){
-    Swal.fire({
-      title: title,
-      text: message,
-      icon: 'warning',
-      showCancelButton: showCancelButton,
-      confirmButtonText: confirmButtonText,
-      cancelButtonText: cancelButtonText,
-      customClass: {
-        confirmButton: 'confirm-button-class',
-        cancelButton: 'cancel-button-class',
-      }
+    return new Promise((resolve,reject)=>{
+      Swal.fire({
+        title: title,
+        text: message,
+        icon: 'warning',
+        showCancelButton: showCancelButton,
+        confirmButtonText: confirmButtonText,
+        cancelButtonText: cancelButtonText,
+        customClass: {
+          confirmButton: 'confirm-button-class',
+          cancelButton: 'cancel-button-class',
+        }
+      }).then((result) => {
+        if (result.value) {
+          resolve(true)
+        } else if (result.dismiss === Swal.DismissReason.cancel) {
+          resolve(false)
+        }
+      })
     })
   }
 
   Info(title:string, message:string, showCancelButton:boolean=false,confirmButtonText:string='Aceptar', cancelButtonText:string='Cancelar'){
-    Swal.fire({
-      title: title,
-      text: message,
-      icon: 'info',
-      showCancelButton: showCancelButton,
-      confirmButtonText: confirmButtonText,
-      cancelButtonText: cancelButtonText,
-      customClass: {
-        confirmButton: 'confirm-button-class',
-        cancelButton: 'cancel-button-class',
-      }
+    return new Promise((resolve,reject)=>{
+      Swal.fire({
+        title: title,
+        text: message,
+        icon: 'info',
+        showCancelButton: showCancelButton,
+        confirmButtonText: confirmButtonText,
+        cancelButtonText: cancelButtonText,
+        customClass: {
+          confirmButton: 'confirm-button-class',
+          cancelButton: 'cancel-button-class',
+        }
+      }).then((result) => {
+        if (result.value) {
+          resolve(true)
+        } else if (result.dismiss === Swal.DismissReason.cancel) {
+          resolve(false)
+        }
+      })
     })
   }
 
