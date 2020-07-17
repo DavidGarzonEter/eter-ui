@@ -36,7 +36,7 @@
        <tr>
         <th *ngIf='configuration.selectable || configuration.delete || configuration.edit' style='justify-content: center;'> 
           <mat-checkbox color='primary' (change)='seletecAllEvent($event)' [(ngModel)]='selectAll' [indeterminate]='indeterminateState'> </mat-checkbox>  </th> 
-       <th *ngFor='let column of columns' scope="col" [ngStyle]='column.style'>{{column.label}}</th>
+       <th [class]='column.style.movil' *ngFor='let column of columns' scope="col" [ngStyle]='column.style'>{{column.label}}</th>
          <!-- <th style='text-align: center;'>
            
          </th> -->
@@ -46,7 +46,7 @@
        
        <tr style="cursor: pointer;" *ngFor='let row of data' (click)='clickOnRoW(row)' >
         <th *ngIf='configuration.selectable || configuration.delete || configuration.edit' style='justify-content: center;'> <mat-checkbox color='primary' [(ngModel)]='checkboxs[row.id]' (click)='clicked($event)' (change)='selection(row, $event)'> </mat-checkbox>  </th> 
-        <th  [ngStyle]='column.style' scope="row" *ngFor='let column of columns'>{{ row[column.ID] }}</th>
+        <th [class]='column.style.movil' [ngStyle]='column.style' scope="row" *ngFor='let column of columns'>{{ row[column.ID] }}</th>
        </tr>
        
  

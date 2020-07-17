@@ -51,6 +51,7 @@ export class DataTableComponent implements OnInit, OnChanges {
 
   ngOnInit(): void {
 
+
     
 
     if(this.reloadTable){

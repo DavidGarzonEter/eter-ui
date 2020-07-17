@@ -12,5 +12,6 @@ export interface TableColumns {
         textAlign?:String,
         color?:String,
         backgroundColor?:String,
+        movil?:String
     }
 }

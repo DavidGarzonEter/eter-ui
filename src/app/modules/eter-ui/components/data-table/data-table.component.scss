@@ -59,3 +59,10 @@ mat-form-field{
 .filter ::ng-deep .mat-form-field-appearance-legacy .mat-form-field-wrapper{
     padding: 0;
 }
+
+
+@media only screen and (max-width: 600px) {
+    .no-movil{
+        display: none;
+    }
+  }

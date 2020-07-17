@@ -50,11 +50,10 @@ export class AppComponent implements OnInit {
 
   columnasCofig : TableColumns[] = [
     {
-      ID:'id',
-      label:'id',
+      ID:'cedula',
+      label:'cedula',
       type:'number',
-      style:{
-        width:'10%',
+      style:{        
         textAlign:'center'
       },
     },
@@ -62,33 +61,36 @@ export class AppComponent implements OnInit {
       ID:'nombre',
       label:'nombre',
       type:'text',
-      style:{
-        width:'30%',
-        textAlign:'center' //text-align
+      style:{        
+        textAlign:'center'
       }
     },
     {
-      ID:'id_compania',
-      label:'id compañia ',
+      ID:'cargo',
+      label:'Cargo ',
       type:'text',
-      style:{
-        width:'30%',
-        textAlign:'center' //text-align
+      style:{        
+        textAlign:'center'        
       }
     },
       {
-        ID:'responsable',
-        label:'Responsable',
-        type:'combo',
-        paramsCombo:{
-          url:'http://localhost:3000/api/v1/paises',
-          visibleField:'pais',
-          selectionField:'id'
-        },
-        style:{
-          width:'30%',
-          textAlign:'center' //text-align
+        ID:'area',
+        label:'Area',
+        type:'text',
+        style:{          
+          textAlign:'center',
+          movil:'no-movil'
         }
+      },
+        {
+          ID:'telefono',
+          label:'Telefono',
+          type:'text',
+          style:{            
+            textAlign:'center' ,
+            movil:'no-movil'
+          },
+
        
 
       }
@@ -104,7 +106,7 @@ export class AppComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.http.getData('http://localhost:3000/api/v1/areas?id_compania=1').subscribe(
+    this.http.getData('http://localhost:3000/api/v1/usuarios?id_compania=1').subscribe(
       res=>{
         if(res['code']===0){
           this.body=res['body']
