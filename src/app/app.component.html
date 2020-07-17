@@ -95,6 +95,25 @@
 
                 </mat-expansion-panel> 
 
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            http Service 
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <div>
+                        
+                        <mat-form-field>
+                            <input type="text" [(ngModel)]='urlRequest' placeholder="URL" matInput>
+                        </mat-form-field><br>
+                        <mat-form-field>                            
+                            <mat-label>Body</mat-label>
+                            <textarea matInput [(ngModel)]='bodyRequest'></textarea>
+                        </mat-form-field>
+                        <button mat-raised-button (click)='sendHttpRequest()'>SEND</button>
+                    </div>
+                </mat-expansion-panel>
+
             </mat-accordion>
         </div>
     </mat-tab>

@@ -7,6 +7,9 @@ import { TableConfiguration } from './modules/interfaces/data-table/table-config
 import { TableColumns } from './modules/interfaces/data-table/table-columns';
 import { CombosConfiguration } from './modules/interfaces/combos/combos-configuration';
 
+declare var require: any
+const jsreport = require('jsreport-browser-client-dist');
+
 
 @Component({
   selector: 'app-root',
@@ -15,7 +18,8 @@ import { CombosConfiguration } from './modules/interfaces/combos/combos-configur
 })
 export class AppComponent implements OnInit {
   
- 
+  urlRequest
+  bodyRequest
   title = 'eter-ui';
 
   textToCrypt;
@@ -29,8 +33,6 @@ export class AppComponent implements OnInit {
   valueGet
 
   dataCombos = []
-
-  
 
   recargarTabla = new EventEmitter<any>()
 
@@ -73,6 +75,7 @@ export class AppComponent implements OnInit {
         textAlign:'center'        
       }
     },
+<<<<<<< HEAD
       {
         ID:'area',
         label:'Area',
@@ -93,7 +96,24 @@ export class AppComponent implements OnInit {
 
        
 
+=======
+    {
+      ID:'responsable',
+      label:'Responsable',
+      type:'combo',
+      paramsCombo:{
+        url:`http://localhost:3000/api/v1/usuarios?id_compania=1`,
+        visibleField:'nombre',
+        selectionField:'cedula'
+      },
+      style:{
+        width:'30%',
+        textAlign:'center' //text-align
+>>>>>>> 3abf6044e0cd80c0fd3940c7921a50c124f4082f
       }
+      
+
+    }
 
   ]
   body = []
@@ -106,7 +126,29 @@ export class AppComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+<<<<<<< HEAD
     this.http.getData('http://localhost:3000/api/v1/usuarios?id_compania=1').subscribe(
+=======
+
+
+
+    jsreport.serverUrl = 'http://localhost:5488'
+
+    let request = {
+      "data": {
+          "to": "Gael Mantilla",
+          "from": "Natalia Guevara",
+          "price": 5400
+      },
+      "template": {
+          "name": "invoice"
+      }
+  }
+
+  jsreport.render('_blank', request);
+
+    this.http.getData('http://localhost:3000/api/v1/areas?id_compania=1').subscribe(
+>>>>>>> 3abf6044e0cd80c0fd3940c7921a50c124f4082f
       res=>{
         if(res['code']===0){
           this.body=res['body']
@@ -137,7 +179,9 @@ export class AppComponent implements OnInit {
         this.message.Error('Error!', 'Mensaje personalizado de Error', true)
         break;
       case 'Info':
-        this.message.Info('Informacion!', 'Mensaje personalizado de informacion', true)
+        this.message.Info('Informacion!', 'Mensaje personalizado de informacion', true).then(res=>{
+          console.log(res)
+        })
         break;
       case 'SuccessToast':
         this.message.SuccessToast('Mensaje personalizado de correcto.')
@@ -214,6 +258,17 @@ export class AppComponent implements OnInit {
   }
   comboValueID($event){
     console.log($event)
+  }
+
+
+  sendHttpRequest(){
+    let body = JSON.parse(this.bodyRequest)
+    console.log(body)
+    // return;
+    this.http.postData(this.urlRequest,body).subscribe(
+      res=>console.log(res),
+      err=>console.log(err)
+    )
   }
 
 }

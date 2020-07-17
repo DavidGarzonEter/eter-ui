@@ -89,6 +89,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { DataTableComponent } from './components/data-table/data-table.component';
 import { TableModalComponent } from './components/data-table/table-modal/table-modal.component';
 import { CombosComponent } from './components/combos/combos.component';
+import { HttpService } from '../services/http.service';
 
 
 @NgModule({
@@ -114,7 +115,7 @@ import { CombosComponent } from './components/combos/combos.component';
     CombosComponent
   ],
   providers: [
-    
+    HttpService
   ],
   entryComponents:[
     TableModalComponent
