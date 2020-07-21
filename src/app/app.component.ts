@@ -55,7 +55,7 @@ export class AppComponent implements OnInit {
     selectable: true,
     addPer: false,
     editPer: false,
-    selectionField: 'cedula'
+    primaryKey: 'cedula'
   }
 
   columnasCofig: TableColumns[] = [
@@ -249,7 +249,7 @@ export class AppComponent implements OnInit {
 
   report(){
 
-    jsreport.serverUrl = 'http://localhost:5488'
+    jsreport.serverUrl = 'http://192.168.0.4:5488'
 
     let request = {
       "data": {

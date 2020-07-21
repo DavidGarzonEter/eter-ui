@@ -5,7 +5,8 @@
     "umdModuleIds":{
       "@ng-bootstrap/ng-bootstrap":"@ng-bootstrap/ng-bootstrap",
       "crypto-js":"crypto-js",
-      "sweetalert2":"sweetalert2"
+      "sweetalert2":"sweetalert2",
+      "ngxMaterialFileInput":"ngxMaterialFileInput"
     }
   },
   "whitelistedNonPeerDependencies":[
@@ -19,6 +20,7 @@
     "zone.js",
     "crypto-js",
     "sweetalert2",
-    "jsreport-browser-client-dist"
+    "jsreport-browser-client-dist",
+    "ngx-material-file-input"
   ]
 }

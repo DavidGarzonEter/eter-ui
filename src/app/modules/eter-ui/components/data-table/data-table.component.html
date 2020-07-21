@@ -45,7 +45,7 @@
      <tbody class='mat-elevation-z6'>
        
        <tr style="cursor: pointer;" *ngFor='let row of data' (click)='clickOnRoW(row)' >
-        <th *ngIf='configuration.selectable || configuration.delete || configuration.edit' style='justify-content: center;'> <mat-checkbox color='primary' [(ngModel)]='checkboxs[row[configuration.selectionField]]' (click)='clicked($event)' (change)='selection(row, $event)'> </mat-checkbox>  </th> 
+        <th *ngIf='configuration.selectable || configuration.delete || configuration.edit' style='justify-content: center;'> <mat-checkbox color='primary' [(ngModel)]='checkboxs[row[configuration.primaryKey]]' (click)='clicked($event)' (change)='selection(row, $event)'> </mat-checkbox>  </th> 
         <th [class]='column.style.movil' [ngStyle]='column.style' scope="row" *ngFor='let column of columns'>{{ row[column.ID] }}</th>
        </tr>
        

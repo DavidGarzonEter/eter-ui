@@ -1,6 +1,10 @@
 {
   "name": "eter-ui",
+<<<<<<< HEAD
   "version": "0.0.12",
+=======
+  "version": "0.0.10",
+>>>>>>> b3285494caad98a6106ee7b322956ede56f03a27
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -30,6 +34,7 @@
     "bootstrap": "^4.4.0",
     "crypto-js": "^4.0.0",
     "jsreport-browser-client-dist": "^1.3.0",
+    "ngx-material-file-input": "^2.1.1",
     "rxjs": "~6.5.4",
     "sweetalert2": "^9.11.0",
     "tslib": "^1.10.0",

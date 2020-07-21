@@ -5,5 +5,5 @@ export interface TableConfiguration {
     selectable?:boolean,
     addPer?:boolean,
     editPer?:boolean,
-    selectionField:string
+    primaryKey?:string
 }
