@@ -83,7 +83,6 @@ export class AppComponent implements OnInit {
         textAlign: 'center'
       }
     },
-<<<<<<< HEAD
 
     {
       ID:'area',
@@ -93,20 +92,6 @@ export class AppComponent implements OnInit {
         width:'30%',
         textAlign:'center' //text-align
 
-=======
-    {
-      ID: 'area',
-      label: 'Area',
-      type: 'combo',
-      paramsCombo: {
-        url: `http://localhost:3000/api/v1/areas?id_compania=1`,
-        visibleField: 'nombre',
-        selectionField: 'id'
-      },
-      style: {
-        width: '30%',
-        textAlign: 'center' //text-align
->>>>>>> 8558fb670c6968f0ae4b235d437bcfd4def11e30
       }
 
 
@@ -123,7 +108,6 @@ export class AppComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-<<<<<<< HEAD
 
     jsreport.serverUrl = 'http://localhost:5488'
 
@@ -137,21 +121,13 @@ export class AppComponent implements OnInit {
           "name": "invoice"
       }
   }
-=======
->>>>>>> 8558fb670c6968f0ae4b235d437bcfd4def11e30
 
    
 
     this.http.getData('http://localhost:3000/api/v1/usuarios?id_compania=1').subscribe(
-<<<<<<< HEAD
       res=>{
         if(res['code']===0){
           this.body=res['body']
-=======
-      res => {
-        if (res['code'] === 0) {
-          this.body = res['body']
->>>>>>> 8558fb670c6968f0ae4b235d437bcfd4def11e30
         }
       }
     )
