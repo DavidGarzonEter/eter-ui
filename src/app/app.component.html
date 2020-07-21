@@ -1,17 +1,17 @@
-
 <!-- <app-test-api></app-test-api> -->
 
 <img src="../assets/images/eter-logo.png" class='eter-logo' alt="">
 
 
 <mat-tab-group mat-align-tabs="center">
-    <mat-tab label="Material"> 
+    <mat-tab label="Material">
         <div style='height: 83vh;'>
-            <iframe style='width: 100%; height: 100%;' src="https://material.angular.io/components/categories" frameborder="0"></iframe>
+            <iframe style='width: 100%; height: 100%;' src="https://material.angular.io/components/categories"
+                frameborder="0"></iframe>
         </div>
     </mat-tab>
-    <mat-tab label="Modulos"> 
-       
+    <mat-tab label="Modulos">
+
     </mat-tab>
     <mat-tab label="Servicios">
         <div class="container" style='padding-bottom: 10px;'>
@@ -20,58 +20,64 @@
                 <mat-expansion-panel>
                     <mat-expansion-panel-header>
                         <mat-panel-title>
-                            Message Service 
-                        </mat-panel-title>                                               
+                            Message Service
+                        </mat-panel-title>
                     </mat-expansion-panel-header>
                     <button mat-raised-button color='primary' (click)='openMessage("Success")'>Success</button>
                     <button mat-raised-button color='primary' (click)='openMessage("Warning")'>Warning</button>
                     <button mat-raised-button color='primary' (click)='openMessage("Error")'>Error</button>
                     <button mat-raised-button color='primary' (click)='openMessage("Info")'>Info</button>
                     <br>
-                    <br>                    
-                    <button mat-raised-button color='primary' (click)='openMessage("SuccessToast")'>Success Toast</button>
-                    <button mat-raised-button color='primary' (click)='openMessage("WarningToast")'>Warning Toast</button>
+                    <br>
+                    <button mat-raised-button color='primary' (click)='openMessage("SuccessToast")'>Success
+                        Toast</button>
+                    <button mat-raised-button color='primary' (click)='openMessage("WarningToast")'>Warning
+                        Toast</button>
                     <button mat-raised-button color='primary' (click)='openMessage("ErrorToast")'>Error Toast</button>
                     <button mat-raised-button color='primary' (click)='openMessage("InfoToast")'>Info Toast</button>
-                </mat-expansion-panel> 
-                
+                </mat-expansion-panel>
+
                 <mat-expansion-panel>
                     <mat-expansion-panel-header>
                         <mat-panel-title>
-                            Crypto Service 
-                        </mat-panel-title>                                               
+                            Crypto Service
+                        </mat-panel-title>
                     </mat-expansion-panel-header>
 
                     <mat-form-field>
-                        <input type="text" matInput placeholder="Ingrese un texto " [(ngModel)]='textToCrypt' autocomplete="off" (keyup)='updateCrypt()'> 
+                        <input type="text" matInput placeholder="Ingrese un texto " [(ngModel)]='textToCrypt'
+                            autocomplete="off" (keyup)='updateCrypt()'>
                     </mat-form-field>
                     <strong>encrypt text :</strong> {{textCrypt}}
-                    
+
                     <br>
 
                     <mat-form-field>
-                        <input type="text" matInput placeholder="Ingrese un texto encriptado " [(ngModel)]='textToDecrypt' autocomplete="off" (keyup)='updateDecrypt()' (change)='updateDecrypt()'> 
+                        <input type="text" matInput placeholder="Ingrese un texto encriptado "
+                            [(ngModel)]='textToDecrypt' autocomplete="off" (keyup)='updateDecrypt()'
+                            (change)='updateDecrypt()'>
                     </mat-form-field>
                     <strong>Decrypt text : </strong>{{textDecrypt}}
 
 
-                </mat-expansion-panel> 
+                </mat-expansion-panel>
 
                 <mat-expansion-panel>
                     <mat-expansion-panel-header>
                         <mat-panel-title>
-                            Session Service 
+                            Session Service
                         </mat-panel-title>
                     </mat-expansion-panel-header>
-                    
-                   <div style='display: flex; flex-direction: row; justify-content: space-around;'>
+
+                    <div style='display: flex; flex-direction: row; justify-content: space-around;'>
                         <div class='sesion-service-flex'>
                             <mat-form-field>
                                 <input type="text" [(ngModel)]="keySet" matInput placeholder="Key" autocomplete="off">
                             </mat-form-field>
                             <br>
                             <mat-form-field>
-                                <input type="text" [(ngModel)]="valueSet" matInput placeholder="Value" autocomplete="off">
+                                <input type="text" [(ngModel)]="valueSet" matInput placeholder="Value"
+                                    autocomplete="off">
                             </mat-form-field>
                             <br>
                             <button mat-raised-button color="accent" (click)="setSessionVar()">Set var</button>
@@ -82,31 +88,31 @@
 
                         <div class='sesion-service-flex'>
                             <mat-form-field>
-                                <input type="text"[(ngModel)]="keyGet"  matInput placeholder="Key" autocomplete="off">
+                                <input type="text" [(ngModel)]="keyGet" matInput placeholder="Key" autocomplete="off">
                             </mat-form-field>
                             <br>
-                            
-                            
-                            <button mat-raised-button color="accent" (click)="getSessionVar()" >Get var</button>
+
+
+                            <button mat-raised-button color="accent" (click)="getSessionVar()">Get var</button>
                         </div>
 
-                        
-                   </div>
 
-                </mat-expansion-panel> 
+                    </div>
+
+                </mat-expansion-panel>
 
                 <mat-expansion-panel>
                     <mat-expansion-panel-header>
                         <mat-panel-title>
-                            http Service 
+                            http Service
                         </mat-panel-title>
                     </mat-expansion-panel-header>
                     <div>
-                        
+
                         <mat-form-field>
                             <input type="text" [(ngModel)]='urlRequest' placeholder="URL" matInput>
                         </mat-form-field><br>
-                        <mat-form-field>                            
+                        <mat-form-field>
                             <mat-label>Body</mat-label>
                             <textarea matInput [(ngModel)]='bodyRequest'></textarea>
                         </mat-form-field>
@@ -114,6 +120,51 @@
                     </div>
                 </mat-expansion-panel>
 
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Report Service
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <mat-form-field>
+                                <input type="text" matInput [(ngModel)]="Name" placeholder="Name">
+                            </mat-form-field>
+                        </div>
+
+                        <div class="col-md-4">
+                            <mat-form-field>
+                                <input type="text" matInput [(ngModel)]="Last" placeholder="Last name">
+                            </mat-form-field>
+                        </div>
+
+                        <div class="col-md-4">
+                            <mat-form-field>
+                                <input type="text" matInput [(ngModel)]="Charge" placeholder="Charge">
+                            </mat-form-field>
+                        </div>
+
+                        <div class="col-md-4">
+                            <mat-form-field>
+                                <input type="text" matInput [(ngModel)]="email" placeholder="email">
+                            </mat-form-field>
+                        </div>
+    
+                        <div class="col-md-4">
+                            <mat-form-field>
+                                <input type="text" matInput [(ngModel)]="Cel" placeholder="Cel. Number">
+                            </mat-form-field>
+                        </div>
+
+                    </div>
+
+                    <button mat-raised-button (click)="report()">Generate</button>
+
+                   
+
+                </mat-expansion-panel>
             </mat-accordion>
         </div>
     </mat-tab>
@@ -121,55 +172,40 @@
         <div class="container" style='padding-bottom: 10px;'>
 
             <mat-accordion>
-                
+
                 <mat-expansion-panel>
                     <mat-expansion-panel-header>
                         <mat-panel-title>
-                            Table 
-                        </mat-panel-title>                                               
+                            Table
+                        </mat-panel-title>
                     </mat-expansion-panel-header>
 
-                    <data-table 
-                    title='Test'
-                    [columns]='columnasCofig'
-                    [data]='body'
-                    [reloadTable]='recargarTabla'
-                    [configuration]='configurationTable'
-                    (clickRow)='filaSeleccionada($event)'
-                    (add)='agregar($event)'
-                    (edit)='editar($event)'
-                    (delete)='eliminar($event)'
-                    (selected)='seleccionados($event)'
-                    
-                    ></data-table>                   
+                    <data-table title='Test' [columns]='columnasCofig' [data]='body' [reloadTable]='recargarTabla'
+                        [configuration]='configurationTable' (clickRow)='filaSeleccionada($event)'
+                        (add)='agregar($event)' (edit)='editar($event)' (delete)='eliminar($event)'
+                        (selected)='seleccionados($event)'></data-table>
 
-                </mat-expansion-panel>   
-                
+                </mat-expansion-panel>
+
                 <mat-expansion-panel>
                     <mat-expansion-panel-header>
                         <mat-panel-title>
-                            Combos 
-                        </mat-panel-title>                                               
+                            Combos
+                        </mat-panel-title>
                     </mat-expansion-panel-header>
 
-                    <combos
+                    <combos [dataCombos]='dataCombos' [configuration]='combosConfig'
+                        (changeOption)='comboValueID($event)'></combos>
 
-                    [dataCombos]='dataCombos' 
-                    [configuration]='combosConfig'  
-                    (changeOption)='comboValueID($event)'
-                                   
-                      
-                    ></combos>
-              
 
-                    </mat-expansion-panel>
+                </mat-expansion-panel>
 
-                
+
 
             </mat-accordion>
 
-        
+
         </div>
-        
+
     </mat-tab>
-  </mat-tab-group>
+</mat-tab-group>

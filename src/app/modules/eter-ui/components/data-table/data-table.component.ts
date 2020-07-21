@@ -22,6 +22,7 @@ export class DataTableComponent implements OnInit, OnChanges {
     selectable:false,
     addPer:false,
     editPer:false,
+    selectionField:'id'
   }
   @Input() reloadTable : EventEmitter<any>
 
@@ -51,8 +52,7 @@ export class DataTableComponent implements OnInit, OnChanges {
 
   ngOnInit(): void {
 
-
-    
+    console.log(this.checkboxs)
 
     if(this.reloadTable){
       this.reloadTable.subscribe(res=>{
@@ -71,9 +71,10 @@ export class DataTableComponent implements OnInit, OnChanges {
       
       if(this.data){
         this.data.forEach(row => {
-          this.checkboxs[row.id]=false
+          
+          this.checkboxs[row[this.configuration.selectionField]]=false          
         });  
-        // console.log(this.checkboxs)}      
+        console.log(this.checkboxs)      
   
         if(this.originalData.length==0){
           let data  = this.data
@@ -171,7 +172,13 @@ export class DataTableComponent implements OnInit, OnChanges {
 
     // debugger;
 
-    this.checkboxs[row.id]=$event.checked
+    this.checkboxs[row[this.configuration.selectionField]]=$event.checked
+
+    console.log(this.checkboxs[row[this.configuration.selectionField]])
+    console.log(row)
+    console.log(row[this.configuration.selectionField])
+    console.log(this.checkboxs)
+    console.log(this.configuration.selectionField)
 
     // console.log(this.checkboxs)
 
@@ -207,6 +214,7 @@ export class DataTableComponent implements OnInit, OnChanges {
 
   seletecAllEvent($event){
 
+  
     this.indeterminateState=false
 
     if(this.selectAll){
