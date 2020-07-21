@@ -83,18 +83,15 @@ export class AppComponent implements OnInit {
         textAlign: 'center'
       }
     },
+
     {
-      ID: 'area',
-      label: 'Area',
-      type: 'combo',
-      paramsCombo: {
-        url: `http://localhost:3000/api/v1/areas?id_compania=1`,
-        visibleField: 'nombre',
-        selectionField: 'id'
-      },
-      style: {
-        width: '30%',
-        textAlign: 'center' //text-align
+      ID:'area',
+      label:'Area',
+      type:'combo',     
+      style:{
+        width:'30%',
+        textAlign:'center' //text-align
+
       }
 
 
@@ -112,12 +109,25 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
 
+    jsreport.serverUrl = 'http://localhost:5488'
+
+    let request = {
+      "data": {
+          "to": "Gael Mantilla",
+          "from": "Natalia Guevara",
+          "price": 5400
+      },
+      "template": {
+          "name": "invoice"
+      }
+  }
+
    
 
     this.http.getData('http://localhost:3000/api/v1/usuarios?id_compania=1').subscribe(
-      res => {
-        if (res['code'] === 0) {
-          this.body = res['body']
+      res=>{
+        if(res['code']===0){
+          this.body=res['body']
         }
       }
     )
