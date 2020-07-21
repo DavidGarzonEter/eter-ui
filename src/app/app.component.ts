@@ -75,41 +75,15 @@ export class AppComponent implements OnInit {
         textAlign:'center'        
       }
     },
-<<<<<<< HEAD
-      {
-        ID:'area',
-        label:'Area',
-        type:'text',
-        style:{          
-          textAlign:'center',
-          movil:'no-movil'
-        }
-      },
-        {
-          ID:'telefono',
-          label:'Telefono',
-          type:'text',
-          style:{            
-            textAlign:'center' ,
-            movil:'no-movil'
-          },
 
-       
-
-=======
     {
-      ID:'responsable',
-      label:'Responsable',
-      type:'combo',
-      paramsCombo:{
-        url:`http://localhost:3000/api/v1/usuarios?id_compania=1`,
-        visibleField:'nombre',
-        selectionField:'cedula'
-      },
+      ID:'area',
+      label:'Area',
+      type:'combo',     
       style:{
         width:'30%',
         textAlign:'center' //text-align
->>>>>>> 3abf6044e0cd80c0fd3940c7921a50c124f4082f
+
       }
       
 
@@ -126,11 +100,6 @@ export class AppComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-<<<<<<< HEAD
-    this.http.getData('http://localhost:3000/api/v1/usuarios?id_compania=1').subscribe(
-=======
-
-
 
     jsreport.serverUrl = 'http://localhost:5488'
 
@@ -147,8 +116,7 @@ export class AppComponent implements OnInit {
 
   jsreport.render('_blank', request);
 
-    this.http.getData('http://localhost:3000/api/v1/areas?id_compania=1').subscribe(
->>>>>>> 3abf6044e0cd80c0fd3940c7921a50c124f4082f
+    this.http.getData('http://localhost:3000/api/v1/usuarios?id_compania=1').subscribe(
       res=>{
         if(res['code']===0){
           this.body=res['body']
