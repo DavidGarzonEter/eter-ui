@@ -90,13 +90,15 @@ import { DataTableComponent } from './components/data-table/data-table.component
 import { TableModalComponent } from './components/data-table/table-modal/table-modal.component';
 import { CombosComponent } from './components/combos/combos.component';
 import { HttpService } from '../services/http.service';
-
+import { FileInputComponent } from './components/file-input/file-input.component';
+import { MaterialFileInputModule } from 'ngx-material-file-input';
 
 @NgModule({
   declarations: [
     DataTableComponent,
     TableModalComponent,
-    CombosComponent
+    CombosComponent,
+    FileInputComponent,
   ],
   imports: [
     CommonModule,
@@ -106,13 +108,15 @@ import { HttpService } from '../services/http.service';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    MaterialFileInputModule 
 
   ],
   exports: [
     Material,
     DataTableComponent,
     TableModalComponent,
-    CombosComponent
+    CombosComponent,
+    FileInputComponent,
   ],
   providers: [
     HttpService

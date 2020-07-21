@@ -1,6 +1,4 @@
-<!-- <app-test-api></app-test-api> -->
 
-<img src="../assets/images/eter-logo.png" class='eter-logo' alt="">
 
 
 <mat-tab-group mat-align-tabs="center">
@@ -196,6 +194,19 @@
 
                     <combos [dataCombos]='dataCombos' [configuration]='combosConfig'
                         (changeOption)='comboValueID($event)'></combos>
+
+
+                </mat-expansion-panel>
+
+
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            File input
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+
+                    <file-input></file-input>
 
 
                 </mat-expansion-panel>
