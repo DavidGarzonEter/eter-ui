@@ -43,7 +43,7 @@
                 <ng-template #Agregar>
                     <div  *ngIf='input.type=="combo"; else otherInput'>
                                     
-                        <mat-select  (selectionChange)='onChange(input.ID,$event.value)' placeholder='{{input.paramsCombo.visibleField}}'>
+                        <mat-select  (selectionChange)='onChange(input.ID,$event.value)' placeholder='{{input.label}}'>
                           <mat-option *ngFor='let data of dataCombo[input.ID]' value='{{data[input.paramsCombo.selectionField]}}'>{{data[input.paramsCombo.visibleField]}}</mat-option>
                         </mat-select>
                       

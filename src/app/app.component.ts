@@ -90,13 +90,15 @@ export class AppComponent implements OnInit {
       ID:'area',
       label:'Area',
       type:'combo',     
+      paramsCombo:{
+        selectionField:'id',
+        url:'http://localhost:3000/api/v1/areas?id_compania=1',
+        visibleField:'nombre'
+      },
       style:{
         width:'30%',
-        textAlign:'center' //text-align
-
+        textAlign:'center', //text-align
       }
-
-
     }
 
   ]
