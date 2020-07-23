@@ -6,6 +6,8 @@ import { HttpService } from './modules/services/http.service';
 import { TableConfiguration } from './modules/interfaces/data-table/table-configuration';
 import { TableColumns } from './modules/interfaces/data-table/table-columns';
 import { CombosConfiguration } from './modules/interfaces/combos/combos-configuration';
+import { FileFormsService } from './modules/services/file-forms.service';
+import { fileFormsParams } from './modules/interfaces/file-forms-service/file-forms-params';
 
 declare var require: any
 const jsreport = require('jsreport-browser-client-dist');
@@ -105,10 +107,18 @@ export class AppComponent implements OnInit {
     private message: MessageService,
     private crypt: CryptoService,
     private http: HttpService,
+    private fileForms: FileFormsService
   ) { }
 
-  ngOnInit() {
+  async ngOnInit() {
 
+
+    try {
+      let res = await this.http.getDataPromise('http://localhost:3000/usuarios')
+      console.log(res)
+    } catch (error) {
+      console.log(error)
+    }
 
     this.session.setData('key1', 'hola mundo ')
     this.session.setData('key2', 'hola mundo 2')
