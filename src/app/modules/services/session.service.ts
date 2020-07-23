@@ -6,11 +6,11 @@ import { CryptoService } from './crypto.service';
   })
 export class SessionService {
 
-    key = "3dd3e96c634e00fd6699041522def9a3";
+    key = "V2xoU2JHTnBRbnBpTWxvd1pESkdlVnBUUW10YVYzaHNaRzFXZG1OSE1XeGlibEU9";  //btoa 3 rounds
     constructor(private cripto: CryptoService) {
     }
 
-    getMain(){
+    private getMain(){
         const info = sessionStorage.getItem(this.key);
         if (info) {
             return this.cripto.decode(info)    
@@ -36,7 +36,7 @@ export class SessionService {
         sessionStorage.setItem(this.key, dataF);
     }
 
-    getActualSession(){
+    getSessionVars(){
         const info = this.getMain();
         return info || {};
     }

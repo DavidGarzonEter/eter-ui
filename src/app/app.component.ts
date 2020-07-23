@@ -109,6 +109,12 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
 
+
+    this.session.setData('key1', 'hola mundo ')
+    this.session.setData('key2', 'hola mundo 2')
+
+    console.log(this.session.getSessionVars())
+
     jsreport.serverUrl = 'http://localhost:5488'
 
     let request = {
