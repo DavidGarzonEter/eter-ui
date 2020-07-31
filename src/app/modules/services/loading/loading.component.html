@@ -1,0 +1,13 @@
+<div style="display: flex; justify-content: center;align-items: center; flex-direction: column;">
+
+    <div style='font-size: 20px;'>
+        <strong>{{data.title}}</strong>
+    </div>
+    <div>
+        <ng-lottie width='170px' [options]="options" (animationCreated)="animationCreated($event)"></ng-lottie>
+    </div>
+    <div style='text-align: center;'>
+        {{data.message}}
+    </div>
+
+</div>

@@ -8,8 +8,8 @@ export class HttpService {
     private http : HttpClient
   ) { }
 
-  getData(url:string){
-    return this.http.get(url)
+  getData(url:string,params?){
+    return this.http.get(url, {params})
   }
 
   postData(url:string, body:any){

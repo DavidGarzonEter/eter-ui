@@ -21,6 +21,8 @@
     "crypto-js",
     "sweetalert2",
     "jsreport-browser-client-dist",
-    "ngx-material-file-input"
+    "ngx-material-file-input",
+    "lottie-web",
+    "ngx-lottie"
   ]
 }

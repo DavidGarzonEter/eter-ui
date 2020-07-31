@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter, AfterViewInit, OnChange
 
 import { MatDialog } from '@angular/material/dialog';
 import { TableModalComponent } from './table-modal/table-modal.component';
+import { HttpService } from 'src/app/modules/services/http.service';
 
 
 @Component({
@@ -25,6 +26,7 @@ export class DataTableComponent implements OnInit, OnChanges {
     primaryKey:'id'
   }
   @Input() reloadTable : EventEmitter<any>
+  @Input() url:string
 
   @Output() clickRow = new EventEmitter<any>() 
   @Output() add = new EventEmitter<any>() 
@@ -47,10 +49,11 @@ export class DataTableComponent implements OnInit, OnChanges {
 
 
   constructor(
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private http : HttpService
   ) { }
 
-  ngOnInit(): void {
+  async ngOnInit() {
 
     console.log(this.checkboxs)
 
@@ -63,6 +66,15 @@ export class DataTableComponent implements OnInit, OnChanges {
       })
     }
 
+    if(this.url){
+      let service = await this.http.getDataPromise(this.url)
+      console.log(service)
+      this.data = service['body']
+      this.data.forEach(row => {          
+        this.checkboxs[row[this.configuration.primaryKey]]=false          
+      });
+    }
+
 
   }
 
@@ -70,8 +82,7 @@ export class DataTableComponent implements OnInit, OnChanges {
     if(changes.data){      
       
       if(this.data){
-        this.data.forEach(row => {
-          
+        this.data.forEach(row => {          
           this.checkboxs[row[this.configuration.primaryKey]]=false          
         });  
         console.log(this.checkboxs)      
@@ -245,21 +256,22 @@ export class DataTableComponent implements OnInit, OnChanges {
     // console.log(this.filters)
 
 
-    this.data = this.originalData.filter(data =>{
-      for(let key of Object.keys(data)){
-
-        let result = data[key].toString().toLowerCase().includes(this.filters.toLowerCase())
-        if(result){
-          // console.log(data)
-          return data
+    if(this.url){
+      
+    }else{
+      this.data = this.originalData.filter(data =>{
+        for(let key of Object.keys(data)){
+  
+          let result = data[key].toString().toLowerCase().includes(this.filters.toLowerCase())
+          if(result){
+            // console.log(data)
+            return data
+          }
+  
         }
-
-      }
-
-    })
-
-    // console.log(this.data)
-    // console.log(this.originalData)
+  
+      })
+    }
 
 
   }

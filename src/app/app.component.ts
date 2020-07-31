@@ -118,13 +118,19 @@ export class AppComponent implements OnInit {
 
   async ngOnInit() {
 
+    this.message.openLoading('Cargando','Cargando...')
 
-    try {
-      let res = await this.http.getDataPromise('http://localhost:3000/usuarios')
-      console.log(res)
-    } catch (error) {
-      console.log(error)
-    }
+    setTimeout(() => {
+      this.message.closeLoading()
+    }, 2000);
+
+
+    // try {
+    //   let res = await this.http.getDataPromise('http://localhost:3000/usuarios')
+    //   console.log(res)
+    // } catch (error) {
+    //   console.log(error)
+    // }
 
     this.session.setData('key1', 'hola mundo ')
     this.session.setData('key2', 'hola mundo 2')
