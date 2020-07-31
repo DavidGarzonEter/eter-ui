@@ -1,4 +1,19 @@
-<mat-form-field>
-	<ngx-mat-file-input #fileInput valuePlaceholder="nombre de archivo" placeholder="Basic Input" ></ngx-mat-file-input>
-	<mat-icon matSuffix style="font-size: 120%;">{{icon}}</mat-icon>
-</mat-form-field>
+<div style="display: flex; flex-direction: column;">
+	<div>
+		<mat-form-field>
+			<ngx-mat-file-input #fileInput valuePlaceholder="nombre de archivo" (change)='fileChange($event)'placeholder="Basic Input" ></ngx-mat-file-input>
+			<mat-icon matSuffix style="font-size: 120%;">{{icon}}</mat-icon>
+		</mat-form-field>
+	</div>
+
+	<div>
+		
+	<button (click)='onSubmit()' color='primary' mat-raised-button>Guardar</button>
+
+
+	</div>
+
+
+	
+
+</div>

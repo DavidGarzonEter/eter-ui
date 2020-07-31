@@ -7,7 +7,7 @@ export class FileFormsService {
 
   constructor() { }
 
-  createMultipartForm(file:File, params?:[]){
+  createMultipartForm(file:File, params?){
 
     const formD = new FormData();
     formD.append('file',file,'form-data');//Asigna el campo File

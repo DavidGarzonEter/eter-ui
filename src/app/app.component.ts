@@ -8,6 +8,7 @@ import { TableColumns } from './modules/interfaces/data-table/table-columns';
 import { CombosConfiguration } from './modules/interfaces/combos/combos-configuration';
 import { FileFormsService } from './modules/services/file-forms.service';
 import { fileFormsParams } from './modules/interfaces/file-forms-service/file-forms-params';
+import { FunctionsService } from './modules/services/functions.service';
 
 declare var require: any
 const jsreport = require('jsreport-browser-client-dist');
@@ -25,6 +26,8 @@ export class AppComponent implements OnInit {
   Charge
   email
   Cel
+
+  today 
 
 
   urlRequest
@@ -109,7 +112,8 @@ export class AppComponent implements OnInit {
     private message: MessageService,
     private crypt: CryptoService,
     private http: HttpService,
-    private fileForms: FileFormsService
+    private fileForms: FileFormsService,
+    private functions : FunctionsService
   ) { }
 
   async ngOnInit() {
@@ -127,20 +131,7 @@ export class AppComponent implements OnInit {
 
     console.log(this.session.getSessionVars())
 
-    jsreport.serverUrl = 'http://localhost:5488'
-
-    let request = {
-      "data": {
-          "to": "Gael Mantilla",
-          "from": "Natalia Guevara",
-          "price": 5400
-      },
-      "template": {
-          "name": "invoice"
-      }
-  }
-
-   
+     
 
     this.http.getData('http://localhost:3000/api/v1/usuarios?id_compania=1').subscribe(
       res=>{
@@ -292,4 +283,16 @@ export class AppComponent implements OnInit {
 
   }
 
+  getDate(){
+    
+    this.today = this.functions.dateForm(this.today)
+    console.log(this.today)
+   
+  }
+
+  getDateToday(){
+    this.today = new Date()
+  }
+
+  
 }
