@@ -92,6 +92,15 @@ import { CombosComponent } from './components/combos/combos.component';
 import { HttpService } from '../services/http.service';
 import { FileInputComponent } from './components/file-input/file-input.component';
 import { MaterialFileInputModule } from 'ngx-material-file-input';
+import { LoadingComponent } from '../services/loading/loading.component';
+
+import { LottieModule } from 'ngx-lottie';
+import player from 'lottie-web';
+
+export function playerFactory() {
+  return player;
+}
+
 
 @NgModule({
   declarations: [
@@ -99,6 +108,7 @@ import { MaterialFileInputModule } from 'ngx-material-file-input';
     TableModalComponent,
     CombosComponent,
     FileInputComponent,
+    LoadingComponent
   ],
   imports: [
     CommonModule,
@@ -108,8 +118,8 @@ import { MaterialFileInputModule } from 'ngx-material-file-input';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    MaterialFileInputModule 
-
+    MaterialFileInputModule,
+    LottieModule.forRoot({ player: playerFactory })
   ],
   exports: [
     Material,
@@ -117,12 +127,14 @@ import { MaterialFileInputModule } from 'ngx-material-file-input';
     TableModalComponent,
     CombosComponent,
     FileInputComponent,
+    LoadingComponent
   ],
   providers: [
     HttpService
   ],
   entryComponents:[
-    TableModalComponent
+    TableModalComponent,
+    LoadingComponent
   ]
 })
 export class EterUiModule { }

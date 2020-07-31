@@ -178,9 +178,10 @@
                         </mat-panel-title>
                     </mat-expansion-panel-header>
 
-                    <data-table title='Test' [columns]='columnasCofig' [data]='body' [reloadTable]='recargarTabla'
+                    <data-table title='Test' [columns]='columnasCofig'  [reloadTable]='recargarTabla'
                         [configuration]='configurationTable' (clickRow)='filaSeleccionada($event)'
                         (add)='agregar($event)' (edit)='editar($event)' (delete)='eliminar($event)'
+                        url='http://localhost:3000/api/v1/usuarios?id_compania=1'
                         (selected)='seleccionados($event)'></data-table>
 
                 </mat-expansion-panel>
