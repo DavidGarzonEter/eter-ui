@@ -83,10 +83,6 @@ export class TableModalComponent implements OnInit {
 
     console.log(this.data.columns)
 
-    
-   
-
-
   }
 
   onSubmit(){

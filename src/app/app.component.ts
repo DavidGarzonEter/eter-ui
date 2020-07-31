@@ -46,12 +46,16 @@ export class AppComponent implements OnInit {
 
   dataCombos = []
 
-  recargarTabla = new EventEmitter<any>()
+ 
 
   combosConfig: CombosConfiguration =
     {
       visibleField: 'pais'
     }
+
+    //tabla
+
+  recargarTabla = new EventEmitter<any>()
 
   configurationTable: TableConfiguration = {
     edit: true,
@@ -60,19 +64,11 @@ export class AppComponent implements OnInit {
     selectable: true,
     addPer: false,
     editPer: false,
-    primaryKey: 'cedula'
+    primaryKey: 'id'
   }
 
   columnasCofig: TableColumns[] = [
-    {
-      ID: 'cedula',
-      label: 'cedula',
-      type: 'number',
-      style: {
-        textAlign: 'center'
-      },
-    },
-    {
+        {
       ID: 'nombre',
       label: 'nombre',
       type: 'text',
@@ -81,8 +77,16 @@ export class AppComponent implements OnInit {
       }
     },
     {
-      ID: 'cargo',
-      label: 'Cargo ',
+      ID: 'codigo',
+      label: 'Codigo',
+      type: 'text',
+      style: {
+        textAlign: 'center'
+      },
+    },
+    {
+      ID: 'descripcion',
+      label: 'Descripcion ',
       type: 'text',
       style: {
         textAlign: 'center'
@@ -90,22 +94,31 @@ export class AppComponent implements OnInit {
     },
 
     {
-      ID:'area',
-      label:'Area',
+      ID:'responsable',
+      label:'Responsable',
       type:'combo',     
       paramsCombo:{
-        selectionField:'id',
-        url:'http://localhost:3000/api/v1/areas?id_compania=1',
+        selectionField:'cedula',
+        url:'http://localhost:3000/api/v1/usuarios?id_compania=1',
         visibleField:'nombre'
       },
       style:{
-        width:'30%',
         textAlign:'center', //text-align
       }
     }
 
   ]
   body = []
+
+  params = [   
+    {
+      id:'id_compania',
+      value:'1'
+    }
+]
+
+
+
 
   constructor(
     private session: SessionService,
@@ -139,10 +152,11 @@ export class AppComponent implements OnInit {
 
      
 
-    this.http.getData('http://localhost:3000/api/v1/usuarios?id_compania=1').subscribe(
+    this.http.getData('http://localhost:3000/api/v1/areas?id_compania=1').subscribe(
       res=>{
         if(res['code']===0){
           this.body=res['body']
+          console.log(this.body)
         }
       }
     )

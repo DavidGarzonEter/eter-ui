@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 
 @Injectable()
 export class HttpService {
@@ -9,7 +9,15 @@ export class HttpService {
   ) { }
 
   getData(url:string,params?){
-    return this.http.get(url, {params})
+     
+    let data = new HttpParams() 
+    
+    if(params){
+    params.forEach(element => {    
+    data = data.append(`${element.id}`, `${element.value}`);        
+    });
+    }
+    return this.http.get(url, {params:data})
   }
 
   postData(url:string, body:any){
