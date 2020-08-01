@@ -1,9 +1,9 @@
 import { Component, OnInit, Input, Output, EventEmitter, AfterViewInit, OnChanges, SimpleChange, SimpleChanges, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { TableModalComponent } from './table-modal/table-modal.component';
-import { HttpService } from 'src/app/modules/services/http.service';
+import { HttpService } from '../../../services/http.service';
 import { MatPaginator } from '@angular/material/paginator';
-import { SelectionModel } from '@angular/cdk/collections';
+
 
 
 
@@ -40,9 +40,6 @@ export class DataTableComponent implements OnInit, OnChanges {
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
   
-  
-
-
   selectedRows=[] /** almacena las filas seleccionadas */
   checkboxs={}
   selectAll = false
@@ -100,17 +97,10 @@ export class DataTableComponent implements OnInit, OnChanges {
     }
     
     if(this.url){
-      
-      this.http.getData(`${this.url}`, this.params).subscribe(
-        res=>{
-          console.log(res)
-          this.data = res['body']['data']
-          this.length = res['body']['count']
-        },
-        err=>{
-          console.log(err)
-        }
-      )
+
+      let service = await this.http.getDataPromise(`${this.url}`, this.params)
+        this.data = service['body']['data']
+        this.length = service['body']['count']
     }
 
 
