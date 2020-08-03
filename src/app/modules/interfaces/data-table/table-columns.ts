@@ -1,9 +1,11 @@
+import { params } from './params';
 export interface TableColumns {
     ID:String,
     label:String,
     type:String,
     paramsCombo?:{
         url?:String,
+        urlParams?:params[],
         visibleField?:String,
         selectionField?:String
     },

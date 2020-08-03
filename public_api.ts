@@ -24,4 +24,6 @@ export * from './src/app/modules/interfaces/data-table/table-columns';
 export * from './src/app/modules/interfaces/data-table/table-configuration';
 export * from './src/app/modules/interfaces/combos/combos-configuration';
 export * from './src/app/modules/interfaces/file-forms-service/file-forms-params';
+export * from './src/app/modules/interfaces/data-table/params'
+
 

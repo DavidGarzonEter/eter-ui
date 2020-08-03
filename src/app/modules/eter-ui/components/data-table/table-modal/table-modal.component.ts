@@ -54,7 +54,7 @@ export class TableModalComponent implements OnInit {
       
       if(element.paramsCombo){
 
-        this.http.get(element.paramsCombo.url).subscribe(
+        this.http.get(element.paramsCombo.url,element.paramsCombo.urlParams).subscribe(
           res=>{
             if(res['code']===0){
               this.dataCombo[element.ID]=res['body']

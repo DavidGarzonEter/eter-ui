@@ -99,7 +99,10 @@ export class AppComponent implements OnInit {
       type:'combo',     
       paramsCombo:{
         selectionField:'cedula',
-        url:'http://localhost:3000/api/v1/usuarios?id_compania=1',
+        url:'http://localhost:3000/api/v1/usuarios',
+        urlParams:[
+          {id:'id_compania',value:1}
+        ],
         visibleField:'nombre'
       },
       style:{

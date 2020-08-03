@@ -67,3 +67,7 @@ mat-form-field{
     }
   }
 
+
+::ng-deep .mat-paginator {
+    background:transparent !important;
+}
