@@ -24,6 +24,7 @@ export class HttpService {
     return this.http.delete(url)
   }
 
+
   getDataPromise(url:string){
     return new Promise((resolve,reject)=>{
       this.http.get(url).subscribe(
