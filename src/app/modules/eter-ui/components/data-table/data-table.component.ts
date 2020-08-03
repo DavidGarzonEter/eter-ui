@@ -54,7 +54,7 @@ export class DataTableComponent implements OnInit, OnChanges {
     5, 10, 25, 50, 100
   ]
 
-  pageSize = 5;
+  pageSize = 2;
   length= 0;
 
   page=0
@@ -69,6 +69,7 @@ export class DataTableComponent implements OnInit, OnChanges {
 
   
   async ngOnInit() {
+  
 
     this.data=['0']
 
@@ -282,7 +283,8 @@ export class DataTableComponent implements OnInit, OnChanges {
   changeFilters(){   
 
 
-    if(this.url){
+    if(this.url){ 
+   
 
       // console.log(this.filters)
     
@@ -293,8 +295,13 @@ export class DataTableComponent implements OnInit, OnChanges {
       });
    this.http.getData(`${this.url}`, this.params).subscribe(
         res=>{
-          console.log(res)
           this.data = res['body']['data']
+          if(this.filters == ''){
+            this.length = res['body']['count']           
+          }else{
+            this.length = this.data.length
+          }
+          
        },
         err=>{
           console.log(err)
@@ -321,6 +328,8 @@ export class DataTableComponent implements OnInit, OnChanges {
 
   changePage($event){
 
+    console.log(this.length)
+
     console.log($event)
 
     this.params.forEach((element, index) => {
@@ -336,6 +345,7 @@ export class DataTableComponent implements OnInit, OnChanges {
       res=>{
         console.log(res)
         this.data = res['body']['data']
+        
       },
       err=>{
         console.log(err)
