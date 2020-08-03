@@ -70,6 +70,8 @@ export class DataTableComponent implements OnInit, OnChanges {
   
   async ngOnInit() {
 
+    this.data=['0']
+
     
 
     this.params.push(
