@@ -16,7 +16,7 @@ export class DataTableComponent implements OnInit, OnChanges {
 
   @Input() title
   @Input() columns
-  @Input() data:any
+  @Input() data:any = []
   @Input() combo
   @Input() configuration = {
     add :false,
