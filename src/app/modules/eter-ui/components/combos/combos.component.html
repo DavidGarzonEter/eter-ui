@@ -4,7 +4,7 @@
         <mat-form-field >
             <mat-label style="text-transform: capitalize;">{{configuration.visibleField}}</mat-label>
             <mat-select  (selectionChange)='selectedData($event)'>    
-                <mat-option [value]="data" *ngFor='let data of dataCombos'>{{data[configuration.visibleField]}}</mat-option>    
+                <mat-option [value]="data[configuration.selectionField]" *ngFor='let data of dataCombos'>{{data[configuration.visibleField]}}</mat-option>    
             </mat-select>    
         </mat-form-field>
 

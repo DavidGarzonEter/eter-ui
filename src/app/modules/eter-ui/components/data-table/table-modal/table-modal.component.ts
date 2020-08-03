@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
+import { HttpService } from '../../../../services/http.service';
 
 @Component({
   selector: 'app-table-modal',
@@ -17,7 +17,7 @@ export class TableModalComponent implements OnInit {
     public dialogRef: MatDialogRef<TableModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data,
     private formBuilder : FormBuilder,
-    private http : HttpClient
+    private http : HttpService
     
     )
     {}
@@ -54,11 +54,16 @@ export class TableModalComponent implements OnInit {
       
       if(element.paramsCombo){
 
-        this.http.get(element.paramsCombo.url,element.paramsCombo.urlParams).subscribe(
+        console.log(element.paramsCombo.url)
+        console.log(element.paramsCombo.urlParams)
+
+        
+
+        this.http.getData(element.paramsCombo.url, element.paramsCombo.urlParams).subscribe(
           res=>{
             if(res['code']===0){
               this.dataCombo[element.ID]=res['body']
-              // console.log(this.dataCombo)
+              console.log(this.dataCombo)
 
               this.dataCombo[element.ID].forEach(data => {
                 // console.log(data[element.paramsCombo.visibleField], element.value)
@@ -68,7 +73,13 @@ export class TableModalComponent implements OnInit {
                 }
               });
 
+            }else{
+              console.log('error en la consulta')
             }
+           
+          },
+          err=>{
+            console.log(err)
           }
         )
        
@@ -77,11 +88,10 @@ export class TableModalComponent implements OnInit {
 
      
 
-      console.log(element) 
       
     });
 
-    console.log(this.data.columns)
+    console.log(this.dataCombo)
 
   }
 

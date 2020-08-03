@@ -1,3 +1,8 @@
+import { params } from '../data-table/params';
+
 export interface CombosConfiguration {
-   visibleField?:string
+   selectionField?:string
+   visibleField?:string,
+   urlCombo?:string,
+   urlParams?:params[]
 }

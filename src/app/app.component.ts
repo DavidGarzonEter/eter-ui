@@ -44,13 +44,15 @@ export class AppComponent implements OnInit {
   valueSet
   valueGet
 
+  
   dataCombos = []
-
- 
-
   combosConfig: CombosConfiguration =
     {
-      visibleField: 'pais'
+      visibleField: 'nombre',
+      urlCombo:'http://localhost:3000/api/v1/usuarios/combo',
+      selectionField: 'cedula',
+      urlParams: [
+        {id:'id_compania', value:1}]
     }
 
     //tabla
@@ -99,8 +101,8 @@ export class AppComponent implements OnInit {
       type:'combo',     
       paramsCombo:{
         selectionField:'cedula',
-        url:'http://localhost:3000/api/v1/usuarios',
-        urlParams:[
+        url:'http://localhost:3000/api/v1/usuarios/combo',
+        urlParams: [
           {id:'id_compania',value:1}
         ],
         visibleField:'nombre'
@@ -155,7 +157,7 @@ export class AppComponent implements OnInit {
 
      
 
-    this.http.getData('http://localhost:3000/api/v1/areas?id_compania=1').subscribe(
+    this.http.getData('http://localhost:3000/api/v1/areas/tabla?id_compania=1').subscribe(
       res=>{
         if(res['code']===0){
           this.body=res['body']
