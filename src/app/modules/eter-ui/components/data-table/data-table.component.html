@@ -8,8 +8,9 @@
       <strong><p style='margin:0' *ngIf='selectedRows.length<1'> {{title}} </p></strong>
     </div>
 
+   
     <div style='flex:3; padding-right: 10px;'>
-      <mat-form-field class='filter'>
+       <mat-form-field class='filter'>
         <input type="text" [(ngModel)]='filters' (keyup)='changeFilters()'  matInput placeholder="Filtrar">
       </mat-form-field>
     </div>
@@ -42,14 +43,23 @@
          </th> -->
        </tr>
      </thead>
-     <tbody class='mat-elevation-z6'>
+     <tbody class='mat-elevation-z3'>
        
        <tr style="cursor: pointer;" *ngFor='let row of data' (click)='clickOnRoW(row)' >
         <th *ngIf='configuration.selectable || configuration.delete || configuration.edit' style='justify-content: center;'> <mat-checkbox color='primary' [(ngModel)]='checkboxs[row[configuration.primaryKey]]' (click)='clicked($event)' (change)='selection(row, $event)'> </mat-checkbox>  </th> 
         <th [class]='column.style.movil' [ngStyle]='column.style' scope="row" *ngFor='let column of columns'>{{ row[column.ID] }}</th>
        </tr>
-       
+     
  
      </tbody> 
+
    </table>
+
+   <mat-paginator
+   [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions" showFirstLastButtons
+   (page)="changePage($event)"></mat-paginator>
+
+
+
+
 </div>

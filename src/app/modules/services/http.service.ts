@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 
 @Injectable()
 export class HttpService {
@@ -9,7 +9,15 @@ export class HttpService {
   ) { }
 
   getData(url:string,params?){
-    return this.http.get(url, {params})
+     
+    let data = new HttpParams() 
+    
+    if(params){
+    params.forEach(element => {    
+    data = data.append(`${element.id}`, `${element.value}`);        
+    });
+    }
+    return this.http.get(url, {params:data})
   }
 
   postData(url:string, body:any){
@@ -24,10 +32,15 @@ export class HttpService {
     return this.http.delete(url)
   }
 
-
-  getDataPromise(url:string){
+  getDataPromise(url:string,params?){
+    let data = new HttpParams()     
+    if(params){
+    params.forEach(element => {    
+    data = data.append(`${element.id}`, `${element.value}`);        
+    });
+    }
     return new Promise((resolve,reject)=>{
-      this.http.get(url).subscribe(
+      this.http.get(url, {params:data}).subscribe(
         res=>resolve(res),
         err=>reject(err)
       )

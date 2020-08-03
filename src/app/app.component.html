@@ -163,6 +163,43 @@
                    
 
                 </mat-expansion-panel>
+
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            date Service
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+
+                    <div class="columns">
+
+                        <div class="row-md-4">
+
+                            <div class="row" >
+                                <div class="col-md-8">
+                                    <mat-form-field>
+                                        <input type="text" matInput [(ngModel)]="today" placeholder="fecha">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-4">
+                                    <button mat-raised-button style="color:primary;" (click)="getDateToday()">Date Today</button>    
+                                </div>                              
+
+                            </div>
+
+                        </div>                      
+
+                        <div class="row-md-4">
+                            <button mat-raised-button style="color:primary;" (click)="getDate()">Generate</button>
+                        </div>
+                     
+                        
+
+                    </div>
+
+                </mat-expansion-panel>
+
+                                   
             </mat-accordion>
         </div>
     </mat-tab>
@@ -178,13 +215,21 @@
                         </mat-panel-title>
                     </mat-expansion-panel-header>
 
-                    <data-table title='Test' [columns]='columnasCofig'  [reloadTable]='recargarTabla'
-                        [configuration]='configurationTable' (clickRow)='filaSeleccionada($event)'
-                        (add)='agregar($event)' (edit)='editar($event)' (delete)='eliminar($event)'
-                        url='http://localhost:3000/api/v1/usuarios?id_compania=1'
-                        (selected)='seleccionados($event)'></data-table>
+                    <data-table title='Test'
+                      [columns]='columnasCofig'
+                      [reloadTable]='recargarTabla'
+                      [configuration]='configurationTable' 
+                      (clickRow)='filaSeleccionada($event)'
+                      (add)='agregar($event)' 
+                      (edit)='editar($event)'
+                      (delete)='eliminar($event)'
+                      [params]='params'
+                      url='http://localhost:3000/api/v1/areas'                     
+                      (selected)='seleccionados($event)'></data-table>
 
                 </mat-expansion-panel>
+
+              
 
                 <mat-expansion-panel>
                     <mat-expansion-panel-header>

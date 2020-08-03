@@ -1,8 +1,10 @@
-import { Component, OnInit, Input, Output, EventEmitter, AfterViewInit, OnChanges, SimpleChange, SimpleChanges } from '@angular/core';
-
+import { Component, OnInit, Input, Output, EventEmitter, AfterViewInit, OnChanges, SimpleChange, SimpleChanges, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { TableModalComponent } from './table-modal/table-modal.component';
-import { HttpService } from 'src/app/modules/services/http.service';
+import { HttpService } from '../../../services/http.service';
+import { MatPaginator } from '@angular/material/paginator';
+
+
 
 
 @Component({
@@ -27,6 +29,7 @@ export class DataTableComponent implements OnInit, OnChanges {
   }
   @Input() reloadTable : EventEmitter<any>
   @Input() url:string
+  @Input() params
 
   @Output() clickRow = new EventEmitter<any>() 
   @Output() add = new EventEmitter<any>() 
@@ -34,10 +37,9 @@ export class DataTableComponent implements OnInit, OnChanges {
   @Output() delete = new EventEmitter<any>() 
   @Output() selected = new EventEmitter<any>() 
 
-  
-  
+  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
-
+  
   selectedRows=[] /** almacena las filas seleccionadas */
   checkboxs={}
   selectAll = false
@@ -45,18 +47,46 @@ export class DataTableComponent implements OnInit, OnChanges {
   filters
   originalData = []
 
+  
+  id_compania
 
+  pageSizeOptions: number[] = [
+    5, 10, 25, 50, 100
+  ]
 
+  pageSize = 5;
+  length= 0;
+
+  page=0
+
+  
 
   constructor(
     public dialog: MatDialog,
-    private http : HttpService
+    private http : HttpService,
   ) { }
 
+
+  
   async ngOnInit() {
 
-    console.log(this.checkboxs)
+    
 
+    this.params.push(
+      {
+        id:'page',
+        value:'0'
+      },
+      {
+        id:'per_page',
+        value:'5'
+      },
+      {
+        id:'filter',
+        value:''
+      }
+    )  
+    
     if(this.reloadTable){
       this.reloadTable.subscribe(res=>{
         console.log(res)
@@ -65,20 +95,19 @@ export class DataTableComponent implements OnInit, OnChanges {
         this.seletecAllEvent('')
       })
     }
-
+    
     if(this.url){
-      let service = await this.http.getDataPromise(this.url)
-      console.log(service)
-      this.data = service['body']
-      this.data.forEach(row => {          
-        this.checkboxs[row[this.configuration.primaryKey]]=false          
-      });
+
+      let service = await this.http.getDataPromise(`${this.url}`, this.params)
+        this.data = service['body']['data']
+        this.length = service['body']['count']
     }
 
 
   }
 
   ngOnChanges(changes:SimpleChanges){
+    
     if(changes.data){      
       
       if(this.data){
@@ -96,8 +125,10 @@ export class DataTableComponent implements OnInit, OnChanges {
         }
       }
 
-    }
+     
 
+    }
+    
   }
 
 
@@ -109,7 +140,6 @@ export class DataTableComponent implements OnInit, OnChanges {
     switch (action) {
       case 'add':
       
-
       if(this.configuration.addPer){
                this.add.emit('add new')
         
@@ -149,10 +179,6 @@ export class DataTableComponent implements OnInit, OnChanges {
               })
             })
 
-            // console.log(columns)
-
-            
-
             this.dialog.open(TableModalComponent, {
               data: {
                 action,
@@ -175,6 +201,7 @@ export class DataTableComponent implements OnInit, OnChanges {
         case 'delete':
           this.delete.emit(this.selectedRows)
         break;
+
     }
 
   }
@@ -185,14 +212,12 @@ export class DataTableComponent implements OnInit, OnChanges {
 
     this.checkboxs[row[this.configuration.primaryKey]]=$event.checked
 
-    console.log(this.checkboxs[row[this.configuration.primaryKey]])
+    /* console.log(this.checkboxs[row[this.configuration.primaryKey]])
     console.log(row)
     console.log(row[this.configuration.primaryKey])
     console.log(this.checkboxs)
     console.log(this.configuration.primaryKey)
-
-    // console.log(this.checkboxs)
-
+ */
     if($event.checked){
       this.selectedRows.push(row)
     }else{
@@ -252,11 +277,27 @@ export class DataTableComponent implements OnInit, OnChanges {
     }
 
   }
-  changeFilters(){
-    // console.log(this.filters)
+  changeFilters(){   
 
 
     if(this.url){
+
+      // console.log(this.filters)
+    
+      this.params.forEach((element, index) => {
+        if(element.id=='filter'){
+          element.value = this.filters   
+        }    
+      });
+   this.http.getData(`${this.url}`, this.params).subscribe(
+        res=>{
+          console.log(res)
+          this.data = res['body']['data']
+       },
+        err=>{
+          console.log(err)
+        }
+      )
       
     }else{
       this.data = this.originalData.filter(data =>{
@@ -273,6 +314,31 @@ export class DataTableComponent implements OnInit, OnChanges {
       })
     }
 
+
+  }
+
+  changePage($event){
+
+    console.log($event)
+
+    this.params.forEach((element, index) => {
+      if(element.id=='per_page'){
+        element.value =  $event.pageSize  
+      }   
+      if(element.id=='page'){
+        element.value =  $event.pageIndex  
+      }  
+    });
+    
+    this.http.getData(`${this.url}`, this.params).subscribe(
+      res=>{
+        console.log(res)
+        this.data = res['body']['data']
+      },
+      err=>{
+        console.log(err)
+      }
+    )
 
   }
 
