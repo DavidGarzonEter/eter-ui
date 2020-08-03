@@ -93,12 +93,9 @@ export class TableModalComponent implements OnInit {
   }
 
   onChange(id, $event){
-    
+  
     console.log($event, id)
     this.modalForm[id] = $event
-    
-
-
   }
 
 }
