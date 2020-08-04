@@ -142,37 +142,10 @@ export class AppComponent implements OnInit {
       this.message.closeLoading()
     }, 2000);
 
-
-    // try {
-    //   let res = await this.http.getDataPromise('http://localhost:3000/usuarios')
-    //   console.log(res)
-    // } catch (error) {
-    //   console.log(error)
-    // }
-
     this.session.setData('key1', 'hola mundo ')
     this.session.setData('key2', 'hola mundo 2')
 
     console.log(this.session.getSessionVars())
-
-     
-
-    this.http.getData('http://localhost:3000/api/v1/areas/tabla?id_compania=1').subscribe(
-      res=>{
-        if(res['code']===0){
-          this.body=res['body']
-          console.log(this.body)
-        }
-      }
-    )
-
-    this.http.getData('http://localhost:3000/api/v1/paises').subscribe(
-      res => {
-        if (res['code'] === 0) {
-          this.dataCombos = res['body']
-        }
-      }
-    )
 
 
   }
@@ -260,8 +233,7 @@ export class AppComponent implements OnInit {
     console.log('editar', $event)
   }
   eliminar($event) {
-    console.log('eliminar', $event)
-    this.recargarTabla.emit()
+    console.log('eliminar', $event[0]['id'])    
   }
   seleccionados($event) {
     console.log('seleccionados', $event)

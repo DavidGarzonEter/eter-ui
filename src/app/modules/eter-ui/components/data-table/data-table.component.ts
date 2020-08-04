@@ -54,7 +54,7 @@ export class DataTableComponent implements OnInit, OnChanges {
     5, 10, 25, 50, 100
   ]
 
-  pageSize = 2;
+  pageSize = 5;
   length= 0;
 
   page=0
@@ -97,6 +97,7 @@ export class DataTableComponent implements OnInit, OnChanges {
         this.selectAll=false
         this.seletecAllEvent('')
       })
+
     }
     
     if(this.url){
@@ -251,7 +252,7 @@ export class DataTableComponent implements OnInit, OnChanges {
     event.stopPropagation();
   }
 
-  seletecAllEvent($event){
+  async seletecAllEvent($event){
 
   
     this.indeterminateState=false
@@ -278,6 +279,11 @@ export class DataTableComponent implements OnInit, OnChanges {
       this.selected.emit(this.selectedRows)
 
     }
+
+    
+    let service = await this.http.getDataPromise(`${this.url}`, this.params)
+    this.data = service['body']['data']
+    this.length = service['body']['count']
 
   }
   changeFilters(){   
