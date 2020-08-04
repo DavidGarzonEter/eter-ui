@@ -61,6 +61,7 @@ export class TableModalComponent implements OnInit {
 
         this.http.getData(element.paramsCombo.url, element.paramsCombo.urlParams).subscribe(
           res=>{
+            console.log(res)
             if(res['code']===0){
               this.dataCombo[element.ID]=res['body']
               console.log(this.dataCombo)
@@ -100,12 +101,9 @@ export class TableModalComponent implements OnInit {
   }
 
   onChange(id, $event){
-    
+  
     console.log($event, id)
     this.modalForm[id] = $event
-    
-
-
   }
 
 }
