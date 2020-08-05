@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { TableModalComponent } from './table-modal/table-modal.component';
 import { HttpService } from '../../../services/http.service';
 import { MatPaginator } from '@angular/material/paginator';
+import { MessageService } from '../../..//services/message.service';
 
 
 
@@ -65,17 +66,14 @@ export class DataTableComponent implements OnInit, OnChanges {
   constructor(
     public dialog: MatDialog,
     private http : HttpService,
+    private message : MessageService
   ) { }
 
 
   
   async ngOnInit() {
   
-
-    // this.data=['0']
-
-    
-
+  
     this.params.push(
       {
         id:'page',
@@ -108,7 +106,16 @@ export class DataTableComponent implements OnInit, OnChanges {
       let service = await this.http.getDataPromise(`${this.url}`, this.params)
         this.data = service['body']['data']
         this.length = service['body']['count']
-
+        
+        if(service['code']===0){         
+            setTimeout(() => {
+            this.message.closeLoading()          
+          }, 1000);
+        }
+        
+       
+        
+        
         this.data.forEach(row => {          
           this.checkboxs[row[this.configuration.primaryKey]]=false          
         });  
