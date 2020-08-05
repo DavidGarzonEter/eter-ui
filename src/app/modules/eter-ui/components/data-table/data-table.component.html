@@ -57,7 +57,7 @@
 
    <div *ngIf='length == 0' style="margin-left: 10px;"> <strong>No se encontró información</strong></div>
 
-   <mat-paginator
+   <mat-paginator *ngIf="paginatorActive"
    [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions" showFirstLastButtons
    (page)="changePage($event)"></mat-paginator>
 

@@ -46,6 +46,7 @@ export class DataTableComponent implements OnInit, OnChanges {
   indeterminateState = false
   filters
   originalData = []
+  paginatorActive=true
 
   
   id_compania
@@ -71,7 +72,7 @@ export class DataTableComponent implements OnInit, OnChanges {
   async ngOnInit() {
   
 
-    this.data=['0']
+    // this.data=['0']
 
     
 
@@ -102,9 +103,17 @@ export class DataTableComponent implements OnInit, OnChanges {
     
     if(this.url){
 
+      console.log('url:',this.url)
+
       let service = await this.http.getDataPromise(`${this.url}`, this.params)
         this.data = service['body']['data']
         this.length = service['body']['count']
+
+        this.data.forEach(row => {          
+          this.checkboxs[row[this.configuration.primaryKey]]=false          
+        });  
+    }else{
+      this.paginatorActive=false
     }
 
 
