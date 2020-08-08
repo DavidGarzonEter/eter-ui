@@ -257,7 +257,10 @@
                         </mat-panel-title>
                     </mat-expansion-panel-header>
 
-                    <file-input></file-input>
+                    <file-input
+                    [params]='fileInput'
+                    (fileSave)='fileSave($event)'                                  
+                    ></file-input>
 
 
                 </mat-expansion-panel>

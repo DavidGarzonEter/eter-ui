@@ -1,19 +1,20 @@
-<div style="display: flex; flex-direction: column;">
-	<div>
-		<mat-form-field>
-			<ngx-mat-file-input #fileInput valuePlaceholder="nombre de archivo" (change)='fileChange($event)'placeholder="Basic Input" ></ngx-mat-file-input>
-			<mat-icon matSuffix style="font-size: 120%;">{{icon}}</mat-icon>
-		</mat-form-field>
+<div  *ngIf="params.input == 'vista'" [class]='edit' [ngStyle]="sizePicture">
+
+	<img [ngStyle]="styleImg" src="{{this.imageSrc}}">
+
+	<div  *ngIf="params.edit == true" class="entrada" [ngStyle]="border">
+		<input id="input" type="file" title='Subir archivo' [accept]='type'
+			style='width: 100%; height: 100%; opacity: 0; overflow: hidden; z-index: 1; cursor: pointer;'
+			(change)='fileChange($event)'>
 	</div>
 
-	<div>
-		
-	<button (click)='onSubmit()' color='primary' mat-raised-button>Guardar</button>
-
-
-	</div>
-
-
-	
-
+</div>
+<div *ngIf="params.input == 'formulario'">
+	<mat-form-field  [ngStyle]="styleForm">
+		<ngx-mat-file-input [placeholder]='params.label' [valuePlaceholder]='' (change)='fileChange($event)' [accept]='type'>
+		</ngx-mat-file-input>
+		<mat-icon *ngIf="typeFile=='imagen'" matSuffix>add_a_photo</mat-icon>
+		<mat-icon *ngIf="typeFile=='pdf'" matSuffix>picture_as_pdf</mat-icon>
+		<mat-icon *ngIf="typeFile=='doc'" matSuffix>insert_drive_file</mat-icon>
+	</mat-form-field>
 </div>

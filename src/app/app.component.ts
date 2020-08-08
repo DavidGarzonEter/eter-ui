@@ -291,5 +291,26 @@ export class AppComponent implements OnInit {
     this.today = new Date()
   }
 
+  //input file
+
+  size= ((screen.height+screen.width)/2)
+
+  fileInput: fileFormsParams = {
+    typeFile:"imagen",
+    input:"vista",
+    imageSrc:'http://localhost:3000/api/v1/docs/1596025421267.png',
+    edit:true,     
+    style:{
+      width:'30%',
+      border:'1px solid black',
+      shape:'circular'
+    }
+  }
+
+  fileSave($event){
+    console.log($event)
+
+  }
+
   
 }
