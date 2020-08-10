@@ -8,6 +8,7 @@ import { TableColumns } from './modules/interfaces/data-table/table-columns';
 import { CombosConfiguration } from './modules/interfaces/combos/combos-configuration';
 import { FileFormsService } from './modules/services/file-forms.service';
 import { fileFormsParams } from './modules/interfaces/file-forms-service/file-forms-params';
+import { fileInputParams } from './modules/interfaces/file-forms-service/file-input-params';
 import { FunctionsService } from './modules/services/functions.service';
 
 declare var require: any
@@ -295,7 +296,7 @@ export class AppComponent implements OnInit {
 
   size= ((screen.height+screen.width)/2)
 
-  fileInput: fileFormsParams = {
+  fileInput: fileInputParams = {
     typeFile:"imagen",
     input:"vista",
     label:"foto",
