@@ -298,12 +298,14 @@ export class AppComponent implements OnInit {
   fileInput: fileFormsParams = {
     typeFile:"imagen",
     input:"vista",
-    imageSrc:'http://localhost:3000/api/v1/docs/1596025421267.png',
+    label:"foto",
+    imageSrc:'http://localhost:3000/api/v1/docs/1596025421267.png', 
     edit:true,     
     style:{
       width:'30%',
       border:'1px solid black',
-      shape:'circular'
+      shape:'circular'      
+     
     }
   }
 
