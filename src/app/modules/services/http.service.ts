@@ -8,10 +8,9 @@ export class HttpService {
     private http : HttpClient
   ) { }
 
-  getData(url:string,params?){
+  getData(url:string, params?){
      
-    let data = new HttpParams() 
-    
+    let data = new HttpParams()     
     if(params){
     params.forEach(element => {    
     data = data.append(`${element.id}`, `${element.value}`);        
@@ -20,19 +19,39 @@ export class HttpService {
     return this.http.get(url, {params:data})
   }
 
-  postData(url:string, body:any){
-    return this.http.post(url,body)
+  postData(url:string, body:any, params?){
+
+    let data = new HttpParams()     
+    if(params){
+    params.forEach(element => {    
+    data = data.append(`${element.id}`, `${element.value}`);        
+    });
+    }
+    return this.http.post(url, body, {params:data})
   }
 
-  putData(url:string, body:any){
-    return this.http.put(url,body)
+  putData(url:string, body:any, params?){
+
+    let data = new HttpParams()     
+    if(params){
+    params.forEach(element => {    
+    data = data.append(`${element.id}`, `${element.value}`);        
+    });
+    }
+    return this.http.put(url, body, {params:data})
   }
 
-  deleteData(url:string){
-    return this.http.delete(url)
+  deleteData(url:string, params?){
+    let data = new HttpParams()    
+    if(params){
+    params.forEach(element => {    
+    data = data.append(`${element.id}`, `${element.value}`);        
+    });
+    }
+    return this.http.delete(url, {params:data})
   }
 
-  getDataPromise(url:string,params?){
+  getDataPromise(url:string, params?){
     let data = new HttpParams()     
     if(params){
     params.forEach(element => {    
@@ -47,27 +66,45 @@ export class HttpService {
     })
   }
 
-  postDataPromise(url:string,body:any){
+  postDataPromise(url:string, body:any, params?){
+    let data = new HttpParams()    
+    if(params){
+    params.forEach(element => {    
+    data = data.append(`${element.id}`, `${element.value}`);        
+    });
+    }
     return new Promise((resolve,reject)=>{
-      this.http.post(url,body).subscribe(
+      this.http.post(url, body, {params:data}).subscribe(
         res=>resolve(res),
         err=>reject(err)
       )
     })
   }
 
-  putDataPromise(url:string,body:any){
+  putDataPromise(url:string, body:any, params?){
+    let data = new HttpParams()     
+    if(params){
+    params.forEach(element => {    
+    data = data.append(`${element.id}`, `${element.value}`);        
+    });
+    }
     return new Promise((resolve,reject)=>{
-      this.http.put(url,body).subscribe(
+      this.http.put(url, body, {params:data}).subscribe(
         res=>resolve(res),
         err=>reject(err)
       )
     })
   }
 
-  deleteDataPromise(url:string){
+  deleteDataPromise(url:string, params?){
+    let data = new HttpParams()     
+    if(params){
+    params.forEach(element => {    
+    data = data.append(`${element.id}`, `${element.value}`);        
+    });
+    }
     return new Promise((resolve,reject)=>{
-      this.http.delete(url).subscribe(
+      this.http.delete(url, {params:data}).subscribe(
         res=>resolve(res),
         err=>reject(err)
       )

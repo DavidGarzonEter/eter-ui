@@ -80,38 +80,23 @@ export class AppComponent implements OnInit {
       }
     },
     {
-      ID: 'codigo',
-      label: 'Codigo',
-      type: 'text',
+      ID: 'cedula',
+      label: 'Cedula',
+      type: 'number',
       style: {
         textAlign: 'center'
       },
-    },
+    },  
     {
-      ID: 'descripcion',
-      label: 'Descripcion ',
-      type: 'text',
+      ID: 'fecha_inicio',
+      label: 'Fecha inicio',
+      type: 'fecha',
       style: {
         textAlign: 'center'
-      }
-    },
-
-    {
-      ID:'responsable',
-      label:'Responsable',
-      type:'combo',     
-      paramsCombo:{
-        selectionField:'cedula',
-        url:'http://localhost:3000/api/v1/usuarios/combo',
-        urlParams: [
-          {id:'id_compania',value:1}
-        ],
-        visibleField:'nombre'
-      },
-      style:{
-        textAlign:'center', //text-align
       }
     }
+
+   
 
   ]
   body = []

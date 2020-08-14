@@ -3,7 +3,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { TableModalComponent } from './table-modal/table-modal.component';
 import { HttpService } from '../../../services/http.service';
 import { MatPaginator } from '@angular/material/paginator';
-import { MessageService } from '../../..//services/message.service';
+import { MessageService } from '../../../services/message.service';
+import { FunctionsService } from '../../../services/functions.service'
 
 
 
@@ -66,7 +67,8 @@ export class DataTableComponent implements OnInit, OnChanges {
   constructor(
     public dialog: MatDialog,
     private http : HttpService,
-    private message : MessageService
+    private message : MessageService,
+    private functionEter : FunctionsService
   ) { }
 
 
@@ -106,6 +108,17 @@ export class DataTableComponent implements OnInit, OnChanges {
       let service = await this.http.getDataPromise(`${this.url}`, this.params)
         this.data = service['body']['data']
         this.length = service['body']['count']
+       
+        this.columns.forEach((element, index) => {          
+          if(element.type=='fecha'){
+            let type = element.ID
+            this.data.forEach((element, index) => {
+             console.log(this.data[index])
+             this.data[index][type] = this.functionEter.dateForm(element[type])            
+            });
+         
+          }          
+        });
         
         if(service['code']===0){         
             setTimeout(() => {
