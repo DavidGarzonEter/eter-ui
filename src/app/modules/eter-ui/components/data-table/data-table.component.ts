@@ -310,9 +310,21 @@ export class DataTableComponent implements OnInit, OnChanges {
     }
 
     
+    
     let service = await this.http.getDataPromise(`${this.url}`, this.params)
     this.data = service['body']['data']
     this.length = service['body']['count']
+
+    this.columns.forEach((element, index) => {          
+      if(element.type=='fecha'){
+        let type = element.ID
+        this.data.forEach((element, index) => {
+         console.log(this.data[index])
+         this.data[index][type] = this.functionEter.dateForm(element[type])            
+        });
+     
+      }          
+    });
 
   }
   changeFilters(){   
