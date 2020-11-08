@@ -123,10 +123,10 @@ export class AppComponent implements OnInit {
   async ngOnInit() {
 
     this.message.openLoading('Cargando','Cargando...')
-/* 
+
     setTimeout(() => {
       this.message.closeLoading()
-    }, 2000); */
+    }, 2000);
 
     this.session.setData('key1', 'hola mundo ')
     this.session.setData('key2', 'hola mundo 2')

@@ -101,33 +101,21 @@ export class DataTableComponent implements OnInit, OnChanges {
 
     }
     
-    if(this.url){
+    if(this.url){     
 
       console.log('url:',this.url)
 
       let service = await this.http.getDataPromise(`${this.url}`, this.params)
         this.data = service['body']['data']
         this.length = service['body']['count']
-       
-        this.columns.forEach((element, index) => {          
-          if(element.type=='fecha'){
-            let type = element.ID
-            this.data.forEach((element, index) => {
-             console.log(this.data[index])
-             this.data[index][type] = this.functionEter.dateForm(element[type])            
-            });
-         
-          }          
-        });
-        
+
+        this.chageFecha()   
+
         if(service['code']===0){         
             setTimeout(() => {
             this.message.closeLoading()          
           }, 1000);
-        }
-        
-       
-        
+        }   
         
         this.data.forEach(row => {          
           this.checkboxs[row[this.configuration.primaryKey]]=false          
@@ -137,6 +125,21 @@ export class DataTableComponent implements OnInit, OnChanges {
     }
 
 
+  }
+
+  chageFecha(){
+    this.columns.forEach((element, index) => {          
+      if(element.type=='fecha'){
+        let type = element.ID
+        this.data.forEach((element, index) => {
+         console.log(this.data[index])
+         this.data[index][type] = this.functionEter.dateForm(element[type])            
+        });
+     
+      }          
+    });
+  
+   
   }
 
   ngOnChanges(changes:SimpleChanges){
@@ -381,7 +384,8 @@ export class DataTableComponent implements OnInit, OnChanges {
 
     this.params.forEach((element, index) => {
       if(element.id=='per_page'){
-        element.value =  $event.pageSize  
+        element.value =  $event.pageSize 
+        
       }   
       if(element.id=='page'){
         element.value =  $event.pageIndex  
@@ -392,6 +396,7 @@ export class DataTableComponent implements OnInit, OnChanges {
       res=>{
         console.log(res)
         this.data = res['body']['data']
+        this.chageFecha() 
         
       },
       err=>{
