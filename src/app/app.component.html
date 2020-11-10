@@ -181,20 +181,35 @@
                                         <input type="text" matInput [(ngModel)]="today" placeholder="fecha">
                                     </mat-form-field>
                                 </div>
-                                <div class="col-md-4">
+                                    <div class="col-md-4">
                                     <button mat-raised-button style="color:primary;" (click)="getDateToday()">Date Today</button>    
                                 </div>                              
-
                             </div>
 
                         </div>                      
 
                         <div class="row-md-4">
-                            <button mat-raised-button style="color:primary;" (click)="getDate()">Generate</button>
-                        </div>
-                     
-                        
+                            <button mat-raised-button style="color:primary;" (click)="getDate('fecha')">Generate</button>
+                        </div>                    
+                    
+                    </div>
 
+                    <div class="columns">
+
+                        <div class="row-md-4">
+                            <div class="row" >
+                                <div class="col-md-8">
+                                    <mat-form-field>
+                                        <input type="text" matInput [(ngModel)]="fechaISO" placeholder="fechaISO">
+                                    </mat-form-field>
+                                </div>                                                                
+                            </div>
+                        </div>                      
+
+                        <div class="row-md-4">
+                            <button mat-raised-button style="color:primary;" (click)="getDate('fechaISO')">Generate</button>
+                        </div>                    
+                    
                     </div>
 
                 </mat-expansion-panel>
@@ -224,7 +239,7 @@
                       (edit)='editar($event)'
                       (delete)='eliminar($event)'
                       [params]='params'
-                      url='http://localhost:3000/api/v1/incapacidades/tabla'                     
+                      url='http://165.227.92.103:3000/api/v1/historicospreop/tabla'                     
                       (selected)='seleccionados($event)'></data-table>
 
                 </mat-expansion-panel>

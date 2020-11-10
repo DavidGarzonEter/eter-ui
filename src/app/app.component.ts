@@ -29,6 +29,7 @@ export class AppComponent implements OnInit {
   Cel
 
   today 
+  fechaISO
 
 
   urlRequest
@@ -72,7 +73,7 @@ export class AppComponent implements OnInit {
 
   columnasCofig: TableColumns[] = [
         {
-      ID: 'nombre',
+      ID: 'nombre_equip',
       label: 'nombre',
       type: 'text',
       style: {
@@ -80,7 +81,7 @@ export class AppComponent implements OnInit {
       }
     },
     {
-      ID: 'cedula',
+      ID: 'codigo_equipo',
       label: 'Cedula',
       type: 'number',
       style: {
@@ -88,8 +89,8 @@ export class AppComponent implements OnInit {
       },
     },  
     {
-      ID: 'fecha_inicio',
-      label: 'Fecha inicio',
+      ID: 'fecha',
+      label: 'Fecha',
       type: 'fecha',
       style: {
         textAlign: 'center'
@@ -101,14 +102,7 @@ export class AppComponent implements OnInit {
   ]
   body = []
 
-  params = [   
-    {
-      id:'id_compania',
-      value:'1'
-    }
-]
-
-
+  params = [{id:'id_compania', value:2}, {id:'id_equipo', value:1}]
 
 
   constructor(
@@ -266,11 +260,13 @@ export class AppComponent implements OnInit {
 
   }
 
-  getDate(){
+  getDate(type){
+    if(type == 'fecha'){
+      this.today = this.functions.dateForm(this.today)
     
-    this.today = this.functions.dateForm(this.today)
-    console.log(this.today)
-   
+    }else{
+      this.fechaISO = this.functions.dateIso(this.fechaISO)
+    }  
   }
 
   getDateToday(){

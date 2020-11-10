@@ -133,7 +133,7 @@ export class DataTableComponent implements OnInit, OnChanges {
         let type = element.ID
         this.data.forEach((element, index) => {
          console.log(this.data[index])
-         this.data[index][type] = this.functionEter.dateForm(element[type])            
+         this.data[index][type] = this.functionEter.dateIso(element[type])            
         });
      
       }          

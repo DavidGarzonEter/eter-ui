@@ -8,18 +8,15 @@ export class FunctionsService {
   constructor() { }
 
 
-  dateForm (date) {   
-    
-    //let data = new Date(date)
-    //let change = `${data.getFullYear()}/${data.getMonth() + 1}/${data.getDate()}`
+  dateForm (date) {       
+   let data = new Date(date)
+   let change = `${data.getFullYear()}/${data.getMonth() + 1}/${data.getDate()}`       
+    return (change)  
+  }
 
+  dateIso (date) {    
     let data = date.toString();
-    let change = data.replace(/(.*)\T.*/, '$1')   
-   
-    
-  
-    return (change)
-
-  
+    let change = data.replace(/(.*)\T.*/, '$1')     
+    return (change)  
   }
 }
