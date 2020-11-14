@@ -280,8 +280,7 @@ export class AppComponent implements OnInit {
   fileInput: fileInputParams = {
     typeFile:"imagen",
     input:"vista",
-    label:"foto",
-    imageSrc:'http://localhost:3000/api/v1/docs/1596025421267.png', 
+    label:"foto",    
     edit:true,     
     style:{
       width:'30%',

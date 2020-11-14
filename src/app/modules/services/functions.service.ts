@@ -16,7 +16,9 @@ export class FunctionsService {
 
   dateIso (date) {    
     let data = date.toString();
-    let change = data.replace(/(.*)\T.*/, '$1')     
-    return (change)  
+    let cut = data.replace(/(.*)\T.*/, '$1') 
+    let add  = `${cut}T05:00:00.000Z`
+    let fecha = add.replace(/(.*)\T.*/, '$1')
+    return (fecha)  
   }
 }
