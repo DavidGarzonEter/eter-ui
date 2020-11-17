@@ -102,7 +102,7 @@ export class AppComponent implements OnInit {
   ]
   body = []
 
-  params = [{id:'id_compania', value:2}, {id:'id_equipo', value:1}]
+  params = [{id:'id_compania', value:2}, {id:'id_equipo', value:'0'}]
 
 
   constructor(
@@ -127,6 +127,12 @@ export class AppComponent implements OnInit {
 
     console.log(this.session.getSessionVars())
 
+    for(let element of  this.params){
+      if(element['id']=='id_equipo'){          
+        element['value']='1'
+      }
+    }
+this.recargarTabla.emit()
 
   }
 

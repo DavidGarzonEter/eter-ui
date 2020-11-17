@@ -108,7 +108,6 @@ export class DataTableComponent implements OnInit, OnChanges {
       let service = await this.http.getDataPromise(`${this.url}`, this.params)
         this.data = service['body']['data']
         this.length = service['body']['count']
-
         this.chageFecha()   
 
         if(service['code']===0){         
@@ -126,7 +125,7 @@ export class DataTableComponent implements OnInit, OnChanges {
 
 
   }
-
+ 
   chageFecha(){
     this.columns.forEach((element, index) => {          
       if(element.type=='fecha'){
@@ -244,16 +243,7 @@ export class DataTableComponent implements OnInit, OnChanges {
 
   selection(row, $event){
 
-    // debugger;
-
     this.checkboxs[row[this.configuration.primaryKey]]=$event.checked
-
-    /* console.log(this.checkboxs[row[this.configuration.primaryKey]])
-    console.log(row)
-    console.log(row[this.configuration.primaryKey])
-    console.log(this.checkboxs)
-    console.log(this.configuration.primaryKey)
- */
     if($event.checked){
       this.selectedRows.push(row)
     }else{
@@ -310,24 +300,12 @@ export class DataTableComponent implements OnInit, OnChanges {
       this.selectedRows = []
       this.selected.emit(this.selectedRows)
 
-    }
-
-    
+    }    
     
     let service = await this.http.getDataPromise(`${this.url}`, this.params)
     this.data = service['body']['data']
     this.length = service['body']['count']
-
-    this.columns.forEach((element, index) => {          
-      if(element.type=='fecha'){
-        let type = element.ID
-        this.data.forEach((element, index) => {
-         console.log(this.data[index])
-         this.data[index][type] = this.functionEter.dateForm(element[type])            
-        });
-     
-      }          
-    });
+    this.chageFecha()   
 
   }
   changeFilters(){   
