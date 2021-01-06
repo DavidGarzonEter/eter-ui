@@ -324,6 +324,7 @@ export class DataTableComponent implements OnInit, OnChanges {
    this.http.getData(`${this.url}`, this.params).subscribe(
         res=>{
           this.data = res['body']['data']
+          this.chageFecha()
           if(this.filters == ''){
             this.length = res['body']['count']           
           }else{

@@ -284,8 +284,8 @@ this.recargarTabla.emit()
   size= ((screen.height+screen.width)/2)
 
   fileInput: fileInputParams = {
-    typeFile:"imagen",
-    input:"vista",
+    typeFile:"pdf",
+    input:"formulario",
     label:"foto",    
     edit:true,     
     style:{

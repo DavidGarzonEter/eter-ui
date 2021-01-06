@@ -4,8 +4,8 @@ import { HttpService } from '../../../services/http.service';
 import imagenPdf from './imagenes/pdf'
 import imagenDoc from './imagenes/doc'
 import imagenFondoTransparente from './imagenes/fondoTransparente'
-
-
+import Compressor from 'compressorjs';
+import { MessageService } from '../../../services/message.service';
 
 @Component({
   selector: 'file-input',
@@ -21,6 +21,8 @@ export class FileInputComponent implements OnInit {
   styleForm
   sizePicture
   edit
+
+  size = 100000 //tamaño a comprimir las imagenes en bites 
     
   @Input()params
    @Output() fileSave = new EventEmitter<any>()
@@ -31,7 +33,8 @@ export class FileInputComponent implements OnInit {
   @Input()icon = 'folder'
   constructor( 
     private fileForms: FileFormsService,
-    private http : HttpService
+    private http : HttpService,
+    private message : MessageService
   ) {}
 
   ngOnInit(): void { 
@@ -47,14 +50,9 @@ export class FileInputComponent implements OnInit {
       this.edit = 'img'
     }else{
       this.edit = ''
-    }
-
-        
-  
+    }       
     this.typeFile= this.params.typeFile
     this.functionTypeFile() 
-    
-
   }
 
   functionTypeFile(){
@@ -108,54 +106,86 @@ export class FileInputComponent implements OnInit {
     }
   }
 
-  fileChange($event: Event){
+  async fileChange($event: Event){
 
-    if($event.target['files'] && $event.target['files'][0]){    
-
-      this.file = $event.target['files'][0];
-   
-      
-      switch (this.typeFile) {
-        case 'pdf':
-        this.styleImg={
-            width:'100%',
-            height: '100%', 
-            "border-radius":`${this.sizePicture['border-radius']}`,
-            "background-image": `url(${imagenPdf})`,
-            "background-position": "center",
-            "background-size": "30% 65%",
-            "background-repeat": "no-repeat" 
-          }
-         
-          break;
-
-        case 'imagen':      
-       
-          const reader = new FileReader();
-          reader.onload = e => this.imageSrc = reader.result;
-          reader.readAsDataURL(this.file);  
-          break;
-
-        case 'doc':
+    if($event.target['files'][0]['size'] < 15000000){
+      let r   
+      if($event.target['files'] && $event.target['files'][0]){   
+        this.file = $event.target['files'][0];              
+        switch (this.typeFile) {
+          case 'pdf':
+            r=false       
           this.styleImg={
-            width:'100%',
-            height: '100%', 
-            "border-radius":`${this.sizePicture['border-radius']}`,
-            "background-image": `url(${imagenDoc})`,
-            "background-position": "center",
-            "background-size": "30% 65%",
-            "background-repeat": "no-repeat" 
-          }        
-
-        break;
-        default:
+              width:'100%',
+              height: '100%', 
+              "border-radius":`${this.sizePicture['border-radius']}`,
+              "background-image": `url(${imagenPdf})`,
+              "background-position": "center",
+              "background-size": "30% 65%",
+              "background-repeat": "no-repeat" 
+            }
+           
+            break;
+  
+          case 'imagen':    
+            const reader = new FileReader();
+            reader.onload = e => this.imageSrc = reader.result;
+            reader.readAsDataURL(this.file);  
+            r = await this.compressor()
+            break;
+  
+          case 'doc':
+            r=false
+            this.styleImg={
+              width:'100%',
+              height: '100%', 
+              "border-radius":`${this.sizePicture['border-radius']}`,
+              "background-image": `url(${imagenDoc})`,
+              "background-position": "center",
+              "background-size": "30% 65%",
+              "background-repeat": "no-repeat" 
+            }        
+  
           break;
+          default:
+            break;
+        }
+  
+      }
+      
+      if(r == false){
+        this.fileSave.emit({new:this.file})
+      }else{      
+      const reader = new FileReader();
+      reader.onload = e => this.imageSrc = reader.result;
+      reader.readAsDataURL(r); 
+      this.fileSave.emit({new:this.file, compressor:r})
       }
 
+    }else{
+      this.message.Error('Error', 'Archivo muy pesado, tamaño mínimo 15 MB')
     }
+ 
+  }
 
-   this.fileSave.emit({new:this.file})
+  compressor(){
+    if(this.file.size > 500000 && this.file.size < 15000000){
+      let factor = (this.size*100)/this.file.size  
+      let y = ((factor**3)*(10**-6))-(0.00059*(factor**2))+(0.0399*factor)
+      return new Promise((resolve,reject)=>{  
+        new Compressor (this.file, {
+            quality: y,
+            success(result){     
+              resolve(result)   
+            }
+           })
+      
+      })
 
+    }else{
+      return (false)
+    }
+   
   
   }
 

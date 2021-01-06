@@ -23,6 +23,7 @@
     "jsreport-browser-client-dist",
     "ngx-material-file-input",
     "lottie-web",
-    "ngx-lottie"
+    "ngx-lottie",
+    "compressorjs"
   ]
 }
