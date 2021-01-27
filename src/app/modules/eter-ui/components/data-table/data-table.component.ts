@@ -101,9 +101,10 @@ export class DataTableComponent implements OnInit, OnChanges {
 
     }
     
-    if(this.url){     
-
-      console.log('url:',this.url)
+    if(this.url){
+      
+      try {
+        console.log('url:',this.url)
 
       let service = await this.http.getDataPromise(`${this.url}`, this.params)
         this.data = service['body']['data']
@@ -113,12 +114,18 @@ export class DataTableComponent implements OnInit, OnChanges {
         if(service['code']===0){         
             setTimeout(() => {
             this.message.closeLoading()          
-          }, 1000);
+          }, 500);
         }   
         
         this.data.forEach(row => {          
           this.checkboxs[row[this.configuration.primaryKey]]=false          
         });  
+        
+      } catch (error) {
+        console.log(error)
+      }
+
+      
     }else{
       this.paginatorActive=false
     }
