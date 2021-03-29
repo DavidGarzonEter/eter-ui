@@ -4,9 +4,22 @@ import { TableModalComponent } from './table-modal/table-modal.component';
 import { HttpService } from '../../../services/http.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { MessageService } from '../../../services/message.service';
-import { FunctionsService } from '../../../services/functions.service'
+import { FunctionsService } from '../../../services/functions.service';
+import {MatPaginatorIntl} from "@angular/material/paginator";
 
+const spanishRangeLabel = (page: number, pageSize: number, length: number) => {
+  if (length == 0 || pageSize == 0) { return `0 de ${length}`; }
+  
+  length = Math.max(length, 0);
 
+  const startIndex = page * pageSize;
+  
+  const endIndex = startIndex < length ?
+      Math.min(startIndex + pageSize, length) :
+      startIndex + pageSize;
+
+  return `${startIndex + 1} - ${endIndex} de ${length}`;
+}
 
 
 @Component({
@@ -68,8 +81,16 @@ export class DataTableComponent implements OnInit, OnChanges {
     public dialog: MatDialog,
     private http : HttpService,
     private message : MessageService,
-    private functionEter : FunctionsService
-  ) { }
+    private functionEter : FunctionsService,
+    private paginatorTranslate: MatPaginatorIntl,
+  ) { 
+    this.paginatorTranslate.itemsPerPageLabel = "Elementos por página"
+    this.paginatorTranslate.nextPageLabel = "Siguiente página"
+    this.paginatorTranslate.lastPageLabel = "Última página"
+    this.paginatorTranslate.previousPageLabel = "Página anterior"
+    this.paginatorTranslate.firstPageLabel = "Primera página"
+    this.paginatorTranslate.getRangeLabel = spanishRangeLabel
+  }
 
 
   
