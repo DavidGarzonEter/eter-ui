@@ -6,6 +6,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MessageService } from '../../../services/message.service';
 import { FunctionsService } from '../../../services/functions.service';
 import {MatPaginatorIntl} from "@angular/material/paginator";
+import {TooltipPosition} from '@angular/material/tooltip';
 
 const spanishRangeLabel = (page: number, pageSize: number, length: number) => {
   if (length == 0 || pageSize == 0) { return `0 de ${length}`; }
@@ -75,7 +76,7 @@ export class DataTableComponent implements OnInit, OnChanges {
 
   page=0
 
-  
+  above: TooltipPosition[] = ['above'];
 
   constructor(
     public dialog: MatDialog,
